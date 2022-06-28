@@ -6,27 +6,19 @@
         <meta name="description" content="">
         <meta name="keywords" content="">
         <link href="" rel="stylesheet">
-        <style type="text/css">
-            body{
+        <style id="main-style" type="text/css">
+            body {
                 margin: 0px;
                 padding: 0px;
             }
-            #top-image{
-                background-image: url("img/img.jpg");
-                margin-top: 0px;
-			    background-position: center;
-			    background-repeat: no-repeat;
-			    background-attachment: fixed;     
-                height: 100%;
-            }
-            #search-box{
+            #search-box {
                 width: 800px;
                 height: 50px;
                 margin: auto;
                 font-family: 'Microsoft YaHei';
                 font-size: 14px;
             }
-            input{
+            input {
                 width: 800px;
                 border: 0px solid rgb(49, 103, 252);
                 height: 50px;
@@ -36,9 +28,12 @@
                 background-size: 25px;
                 background-position: 5px center;
                 padding: 0 0 0 25px;
-                border-radius: 25px;
+                border-radius: 25px;               
             }
-            #go{
+            input:hover {
+                box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.25);
+            }
+            #go {
                 width: 80px;
                 height: 50px;
                 float: right;
@@ -52,13 +47,13 @@
                 margin-left: -80px;
                 border: 0px;
             }
-            #s-logo{
+            #s-logo {
                 text-align: center;
                 font-family: 'Microsoft YaHei';
                 font-size: 18px;
                 color: white;
             }
-            #logo #logo-img{
+            #logo #logo-img {
                 width: 165px;
                 height: 75px;
                 border-radius: 37.5px;
@@ -82,11 +77,11 @@
                 color: white;
             }    
             div.tab button:hover {
-                background-color: rgba(221, 221, 221, 0.15);
+                background-color: rgba(255, 255, 255, 0.25);
                 border-radius: 50px;
             }
             div.tab button.active {
-                background-color: rgba(204, 204, 204, 0.3);
+                background-color: rgba(255, 255, 255, 0.5);
                 border-radius: 50px;
             }
             .tabcontent {
@@ -95,12 +90,12 @@
                 border-top: none;
                 align-content: center;
             }
-            #search-tab{
+            #search-tab {
                 width: 800px;
                 margin: auto;
                 border: 0px;
             }
-            #rights{
+            #rights {
                 height: 60px;
                 background-color: rgba(0, 0, 0, 0.6);
                 color: rgb(224, 224, 224);
@@ -112,8 +107,21 @@
                 font-family: 'Microsoft YaHei';
                 font-size: 15px;
             }
+            #weather {
+                font-family: 'Microsoft YaHei';
+            }
         </style>
-        <script>
+        <script type="text/javascript">
+            window.onload = function(){
+                var day = new Date().getDay();
+                var sty = document.getElementById("main-style");
+                sty.innerHTML += '#top-image { background-image: url("img/bgimg-0' + day + '.webp");'
+                    + 'margin-top: 0px;'
+                    + 'background-position: center;'
+                    + 'background-repeat: no-repeat;'
+                    + 'background-attachment: fixed;'
+                    + 'height: 100%; }';
+            }
             function changeSearchEngine(evt, provider) {
                 var i, tabcontent, tablinks;
                 tabcontent = document.getElementsByClassName("tabcontent");
@@ -128,6 +136,7 @@
                 evt.currentTarget.className += " active";
             }
         </script>
+
 	</head>
 	<body>
         <!-- 
@@ -136,7 +145,13 @@
             https://www.bing.com/search?q=
             https://zh.wikipedia.org/w/index.php?search=
         -->
-        <div id="top-image">
+        <div id="top-image" onload="changeBackgroundImage()">
+            <div id="weather">
+            <!--
+                <iframe scrolling="no" src="https://tianqiapi.com/api.php?style=tt&skin=pitaya" frameborder="0" width="590" height="98" allowtransparency="true">
+                </iframe>
+            -->
+            </div>
             <br />
             <br />
             <br />
@@ -157,8 +172,7 @@
                     <button class="tablinks active" onclick="changeSearchEngine(event, 'Baidu')">Baidu</button>
                     <button class="tablinks" onclick="changeSearchEngine(event, 'Bing')">Bing</button>
                     <button class="tablinks" onclick="changeSearchEngine(event, 'Wikipedia')">Wikipedia</button>
-                </div>
-            
+                </div>            
                 <div id="Google" class="tabcontent" style="display: none;">
                     <div id="search-box">
                         <form action="https://www.google.com/search" method="get">
@@ -166,8 +180,7 @@
                             <button id="go" type="submit">Go</button>
                         </form>
                     </div>
-                </div>
-            
+                </div>           
                 <div id="Baidu" class="tabcontent" style="display: block;">
                     <div id="search-box">
                         <form action="https://www.baidu.com/s" method="get">
@@ -175,8 +188,7 @@
                             <button id="go" type="submit">Go</button>
                         </form>
                     </div>
-                </div>
-            
+                </div>            
                 <div id="Bing" class="tabcontent" style="display: none;">
                     <div id="search-box">
                         <form action="https://www.bing.com/search" method="get">
@@ -184,8 +196,7 @@
                             <button id="go" type="submit">Go</button>
                         </form>
                     </div>
-                </div>
-    
+                </div>    
                 <div id="Wikipedia" class="tabcontent" style="display: none;">
                     <div id="search-box">
                         <form action="https://zh.wikipedia.org/w/index.php" method="get">
