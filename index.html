@@ -24,7 +24,7 @@
                 font-family: 'Microsoft YaHei';
                 font-size: 14px;
             }
-            input {
+            input[type=text] {
                 width: 800px;
                 border: 2px solid rgb(255, 255, 255);
                 height: 50px;
@@ -33,18 +33,20 @@
                 background-repeat: no-repeat;
                 background-size: 25px;
                 background-position: 5px center;
-                padding: 0 0 0 25px;
+                padding: 0 25 0 25px;
                 border-radius: 25px;
                 box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.3);
             }
-            input:hover {
+            input[type=text]:hover {
                 box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.6);
                 border: 2px solid rgb(128, 128, 128);
             }
-            input:focus {
+            input[type=text]:focus {
                 outline: none;
                 border: 2px solid rgb(89, 30, 74);
             }
+            input[type=text]::placeholder {text-align: center; }
+            input[type=text]:focus::placeholder { text-align: left; }
             #go {
                 width: 80px;
                 height: 50px;
@@ -189,7 +191,7 @@
                 <div id="Google" class="tabcontent" style="display: none;">
                     <div id="search-box">
                         <form action="https://www.google.com/search" method="get">
-                            <input type="search" name="q" placeholder="Google Search" autocomplete="off" />
+                            <input type="text" name="q" placeholder="Google Search" autocomplete="off" />
                             <button id="go" type="submit">Go</button>
                         </form>
                     </div>
@@ -197,7 +199,7 @@
                 <div id="Baidu" class="tabcontent" style="display: block;">
                     <div id="search-box">
                         <form action="https://www.baidu.com/s" method="get">
-                            <input type="search" name="wd" placeholder="Baidu Search" autocomplete="off" />
+                            <input type="text" name="wd" placeholder="Baidu Search" autocomplete="off" />
                             <button id="go" type="submit">Go</button>
                         </form>
                     </div>
@@ -205,7 +207,7 @@
                 <div id="Bing" class="tabcontent" style="display: none;">
                     <div id="search-box">
                         <form action="https://cn.bing.com/search" method="get">
-                            <input type="search" name="q" placeholder="Bing Search" autocomplete="off" />
+                            <input type="text" name="q" placeholder="Bing Search" autocomplete="off" />
                             <button id="go" type="submit">Go</button>
                         </form>
                     </div>
@@ -213,7 +215,7 @@
                 <div id="Wikipedia" class="tabcontent" style="display: none;">
                     <div id="search-box">
                         <form action="https://zh.wikipedia.org/w/index.php" method="get">
-                            <input type="search" name="search" placeholder="Wikipedia Search" autocomplete="off" />
+                            <input type="text" name="search" placeholder="Wikipedia Search" autocomplete="off" />
                             <button id="go" type="submit">Go</button>
                         </form>
                     </div>
