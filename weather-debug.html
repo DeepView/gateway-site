@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="content-type"/>
+        <title>Weather-Debug</title>
+        <style type="text/css" id="main-style">
+            #main-div {
+                width: 500px;
+                height: 500px;
+                padding: 40 40 40 40px;
+            }
+            #output {
+                font-family: 'Microsoft YaHei';
+                color: rgb(64, 64, 64);
+            }
+            #get-coords, #json-analysis{
+                border: 0px;
+                width: 150px;
+                height: 50px;
+                font-family: 'Microsoft YaHei';
+                font-size: 12px;
+                border-radius: 25px;
+                color: white;
+                background-color: rgb(0, 116, 231);
+                box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.3);
+            }
+            #get-coords:hover, #json-analysis:hover {
+                box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+            }
+            #weather {
+                height: 50px;
+                width: 50px;
+                background-color: rgb(0, 116, 231);
+                border-radius: 25px;
+            }
+            #sub-page {
+                height: 800px;
+                width: 480px;
+                border: 2px;
+                border-radius: 10px;
+            }
+        </style>
+    </head>
+    <body onload="getGeoLocation()">
+        <form>
+            <button id="get-coords" type="button" onclick="getGeoLocation()">GetLocation</button>
+            <button id="json-analysis" type="button" onclick="jsonAnalysis()">GetWeather</button>
+        </form>
+        <div id="main-div">
+            <p id="output">
+                <!-- Output Area -->
+            </p>
+            <script src="js/jquery-3.6.0.min.js"></script>
+            <script type="text/javascript">
+                var jsonData = '';
+                var elem = document.getElementById("output");
+                var coordinateString = '';
+                function getGeoLocation() {               
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(showPosition, showError);
+                    } else {
+                        elem.innerHTML = "浏览器不支持定位服务。";
+                    }
+                }
+                function showPosition(position) {
+                    coordinateString = position.coords.longitude + ',' + position.coords.latitude;
+                    //elem.innerHTML = "纬度：" + position.coords.latitude + "<br/>经度:" + position.coords.longitude + "<br/>";
+                }
+                function showError(error) {
+                    switch(error)
+                    {
+                        case error.PERMISSION_DENIED:
+                            elem.innerHTML = "用户禁止使用定位。"
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            elem.innerHTML = "位置信息不可用。"
+                            break;
+                        case error.TIMEOUT:
+                            elem.innerHTML = "请求超时。"
+                            break;
+                        case error.UNKNOWN_ERROR:
+                            elem.innerHTML = "未知错误。"
+                            break;
+                    }
+                }
+                function jsonAnalysis() {
+                    var sty = document.getElementById('main-style');
+                    var requestUri = 'https://devapi.qweather.com/v7/weather/now?key=cdeb46a4a56645e3b2425c0f7fb92a8d&location=' + coordinateString;
+		            $.getJSON(requestUri, function(result) {
+                        elem.innerHTML = '<a href=' + result.fxLink + ' target="_blank" id="fw-link">查看响应式链接内容<a><br/><br/>';
+                        elem.innerHTML += '<div id="icon"></div><br/>';
+                        elem.innerHTML += '天气：' + result.now.text + '<br/>';
+                        elem.innerHTML += '气温：' + result.now.temp + '℃<br/>';
+                        elem.innerHTML += '体感温度：' + result.now.feelsLike + '℃<br/>';
+                        elem.innerHTML += '风向：' + result.now.windDir + '<br/>';
+                        elem.innerHTML += '风力等级：' + result.now.windScale + '<br/>';
+                        elem.innerHTML += '相对湿度：' + result.now.humidity + '%<br/>';
+                        sty.innerHTML += '#icon { stroke: red; background-image: url("img/icons/' + result.now.icon + '.svg")}';
+		            });
+                }
+            </script>
+            <div id="weather" onclick="jsonAnalysis()">
+            </div>
+            <div>
+                <p>SVG Show</p>
+                <svg>
+                    <use xlink:href="img/icons/100.svg"></use>
+                </svg>
+            </div>
+            <div>
+                <iframe src="http://hfx.link/1tzl1" id="sub-page">
+
+                </iframe>
+            </div>
+        </div>
+    </body>
+</html>

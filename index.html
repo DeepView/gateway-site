@@ -1,143 +1,18 @@
-<!DOCTYOE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 	<head>
         <meta content="text/html;charset=utf-8" http-equiv="content-type"/>
         <title>AnySearch</title>
         <meta name="description" content="">
         <meta name="keywords" content="">
-        <link href="" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="style/m-style.css">
         <style id="main-style" type="text/css">
-            /*
-            ::-webkit-input-placeholder { text-align: center; }
-            ::-moz-placeholder { text-align: center; }
-            :-ms-input-placeholder { text-align: center; }
-            input:-moz-placeholder { text-align: center; }
-            */
-            body {
-                margin: 0px;
-                padding: 0px;
-            }
-            #search-box {
-                width: 800px;
-                height: 50px;
-                margin: auto;
-                font-family: 'Microsoft YaHei';
-                font-size: 14px;
-            }
-            input[type=text] {
-                width: 800px;
-                border: 2px solid rgb(255, 255, 255);
-                height: 50px;
-                float: left;
-                background-color: rgba(255, 255, 255, 255);
-                background-repeat: no-repeat;
-                background-size: 25px;
-                background-position: 5px center;
-                padding: 0 25 0 25px;
-                border-radius: 25px;
-                box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.3);
-            }
-            input[type=text]:hover {
-                box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.6);
-                border: 2px solid rgb(128, 128, 128);
-            }
-            input[type=text]:focus {
-                outline: none;
-                border: 2px solid rgb(89, 30, 74);
-            }
-            input[type=text]::placeholder {text-align: center; }
-            input[type=text]:focus::placeholder { text-align: left; }
-            #go {
-                display: none;
-                width: 80px;
-                height: 50px;
-                float: right;
-                background: rgba(255, 255, 255, 0);
-                color: rgb(89, 30, 74, 255);
-                text-align: center;
-                line-height: 50px;
-                cursor: pointer;
-                border: 0px;
-                border-radius: 25px;
-                margin-left: -80px;
-                border: 0px;
-            }
-            #s-logo {
-                text-align: center;
-                font-family: 'Microsoft YaHei';
-                font-size: 18px;
-                color: white;
-            }
-            #logo #logo-img {
-                width: 165px;
-                height: 75px;
-                border-radius: 37.5px;
-            }
-            div.tab {
-                overflow: hidden;
-                border: 0px;
-                background-color: #f1f1f100;
-                margin-left: 50%;
-                transform: translateX(-45.75%);
-            }
-            div.tab button {
-                background-color: inherit;
-                float: left;
-                border: none;
-                outline: none;
-                cursor: pointer;
-                padding: 17px 17px;
-                transition: 0.3s;
-                font-size: 17px;
-                color: white;
-            }    
-            div.tab button:hover {
-                background-color: rgba(255, 255, 255, 0.25);
-                border-radius: 50px;
-            }
-            div.tab button.active {
-                background-color: rgba(255, 255, 255, 0.5);
-                border-radius: 50px;
-                color: rgb(89, 30, 74);
-            }
-            .tabcontent {
-                display: none;
-                border: 0px solid #ccc;
-                border-top: none;
-                align-content: center;
-            }
-            #search-tab {
-                width: 800px;
-                margin: auto;
-                border: 0px;
-            }
-            #rights {
-                height: 60px;
-                background-color: rgba(0, 0, 0, 0.6);
-                color: rgb(224, 224, 224);
-                text-align: center;
-                position: absolute;
-                bottom: 0px;
-                left: 0px;
-                right: 0px;
-                font-family: 'Microsoft YaHei';
-                font-size: 15px;
-            }
-            #weather {
-                font-family: 'Microsoft YaHei';
-            }
         </style>
+	</head>
+	<body onload="documentAction()">
+        <script src="js/jquery-3.6.0.min.js"></script>
         <script type="text/javascript">
-            window.onload = function(){
-                var day = new Date().getDay();
-                var sty = document.getElementById("main-style");
-                sty.innerHTML += '#top-image { background-image: url("img/bgimg-0' + day + '.webp");'
-                    + 'margin-top: 0px;'
-                    + 'background-position: center;'
-                    + 'background-repeat: no-repeat;'
-                    + 'background-attachment: fixed;'
-                    + 'height: 100%; }';
-            }
+            var coordinateString = '';
             function changeSearchEngine(evt, provider) {
                 var i, tabcontent, tablinks;
                 tabcontent = document.getElementsByClassName("tabcontent");
@@ -151,44 +26,101 @@
                 document.getElementById(provider).style.display = "block";
                 evt.currentTarget.className += " active";
             }
-        </script>
-
-	</head>
-	<body>
+            function getGeoLocation() {               
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition, showError);
+                } else {
+                    console.log("浏览器不支持定位服务。");
+                }
+            }
+            function showPosition(position) {
+                coordinateString = position.coords.longitude + ',' + position.coords.latitude;
+            }
+            function showError(error) {
+                switch(error)
+                {
+                    case error.PERMISSION_DENIED:
+                        console.log("用户禁止使用定位。");
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        console.log("位置信息不可用。");
+                        break;
+                    case error.TIMEOUT:
+                        console.log("请求超时。");
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        console.log("未知错误。");
+                        break;
+                }
+            }
+            function getWeather() {
+                getGeoLocation();
+                var we = document.getElementById("weather");
+                var ws = document.getElementById("main-style");
+                var requestUri = 'https://devapi.qweather.com/v7/weather/now?key=cdeb46a4a56645e3b2425c0f7fb92a8d&location=' + coordinateString;
+                $.getJSON(requestUri, function(v) {
+                    we.innerHTML = '<img src="img/icons/' + v.now.icon + '.svg" id="weather-icon"/>';
+                    we.innerHTML += '' + v.now.temp + '℃';
+                });
+            }
+            function changeBgImage() {
+                var day = new Date().getDay();
+                var ws = document.getElementById("main-style");
+                var we = document.getElementById("weather");
+                var coordinateString = '';
+                ws.innerHTML += '#top-image { background-image: url("img/bgimg-0' + day + '.webp");'
+                    + 'margin-top: 0px;'
+                    + 'background-position: center;'
+                    + 'background-repeat: no-repeat;'
+                    + 'background-attachment: fixed;'
+                    + 'width: 100%;'
+                    + 'height: 100%; }';
+            }
+            function applyIFrameStyle() {
+                $('#weather-ifm').load(function () {
+                    let cssLink = document.createElement("link");
+                    cssLink.href = "ifm-style.css";
+                    cssLink.rel = "stylesheet";
+                    cssLink.type = "text/css";
+                    $('#weather-ifm')
+                        .contents().find("head")
+                        .append($('<link rel="stylesheet" type="text/css" href="ifm-style.css">')
+                    );
+                });
+            }
+            function documentAction() {
+                changeBgImage();
+                applyIFrameStyle();
+                //getWeather();
+            }
+        </script>      
         <!-- 
             https://www.baidu.com/s?wd=
             https://www.google.com/search?q=
             https://www.bing.com/search?q=
             https://zh.wikipedia.org/w/index.php?search=
         -->
-        <div id="top-image" onload="changeBackgroundImage()">
-            <div id="weather">
-            <!--
-                <iframe scrolling="no" src="https://tianqiapi.com/api.php?style=tt&skin=pitaya" frameborder="0" width="590" height="98" allowtransparency="true">
-                </iframe>
-            -->
+        <div id="top-image">
+            <div id="top-space"></div>
+            <div id="weather" onclick="getWeather()">
+                <div>
+                    <iframe id="weather-ifm" scrolling="auto" src="https://tianqiapi.com/api.php" frameborder="0">
+                    </iframe>
+                </div>
             </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+            <div id="logo-top-space"></div>
             <div id="s-logo">
                 <span id="logo"><img id="logo-img" src="img/logo.png" /></span>
             </div>
-            <br />
-            <br />
-            <br />
-            <br />
+            <div id="tab-top-space"></div>
             <div id="search-tab">
                 <div class="tab">
                     <button class="tablinks" onclick="changeSearchEngine(event, 'Google')">Google</button>
                     <button class="tablinks active" onclick="changeSearchEngine(event, 'Baidu')">Baidu</button>
                     <button class="tablinks" onclick="changeSearchEngine(event, 'Bing')">Bing</button>
                     <button class="tablinks" onclick="changeSearchEngine(event, 'Wikipedia')">Wikipedia</button>
-                </div>            
+                </div> 
+                <div id="search-top-space"></div>
                 <div id="Google" class="tabcontent" style="display: none;">
                     <div id="search-box">
                         <form action="https://www.google.com/search" method="get">
