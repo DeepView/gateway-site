@@ -2,17 +2,18 @@
 <html lang="zh-CN">
 	<head>
         <meta content="text/html;charset=utf-8" http-equiv="content-type"/>
-        <title>AnySearch</title>
         <meta name="description" content="">
         <meta name="keywords" content="">
+        <title>AnySearch</title>
         <link rel="stylesheet" type="text/css" href="style/m-style.css">
-        <style id="main-style" type="text/css">
-        </style>
+        <style id="main-style" type="text/css"></style>
 	</head>
-	<body onload="documentAction()">
+	<body onload="documentAction()" onfocus="getWeather()">
         <script src="js/jquery-3.6.0.min.js"></script>
         <script type="text/javascript">
             var coordinateString = '';
+            var visibility = true;
+            var requestUriSubString = 'https://devapi.qweather.com/v7/weather/now?key=cdeb46a4a56645e3b2425c0f7fb92a8d&location=';
             function changeSearchEngine(evt, provider) {
                 var i, tabcontent, tablinks;
                 tabcontent = document.getElementsByClassName("tabcontent");
@@ -54,14 +55,31 @@
                 }
             }
             function getWeather() {
-                getGeoLocation();
                 var we = document.getElementById("weather");
-                var ws = document.getElementById("main-style");
-                var requestUri = 'https://devapi.qweather.com/v7/weather/now?key=cdeb46a4a56645e3b2425c0f7fb92a8d&location=' + coordinateString;
+                var requestUri = requestUriSubString + coordinateString;
                 $.getJSON(requestUri, function(v) {
                     we.innerHTML = '<img src="img/icons/' + v.now.icon + '.svg" id="weather-icon"/>';
-                    we.innerHTML += '' + v.now.temp + '℃';
+                    we.innerHTML += '&nbsp;&nbsp;&nbsp;&nbsp;' + v.now.temp + '℃';
                 });
+            }
+            function getMoreWeather() {
+                var we = document.getElementById("weather-more");
+                var requestUri = requestUriSubString + coordinateString;
+                $.getJSON(requestUri, function(v) {
+                    we.innerHTML = '<iframe id="w-ifm" scrolling="auto" src="' + v.fxLink + '" frameborder="0"></iframe>';
+                });
+                if (visibility) {
+                    we.style.display = "block";
+                    visibility = false;
+                } else {
+                    we.style.display = "none";
+                    visibility = true;
+                }
+            }
+            function hideMoreWeather() {
+                var we = document.getElementById("weather-more");
+                we.style.display = "none";
+                visibility = true;    
             }
             function changeBgImage() {
                 var day = new Date().getDay();
@@ -88,10 +106,10 @@
                     );
                 });
             }
+            function test() { alert("Hey,boy."); }
             function documentAction() {
+                getGeoLocation();
                 changeBgImage();
-                applyIFrameStyle();
-                //getWeather();
             }
         </script>      
         <!-- 
@@ -102,12 +120,8 @@
         -->
         <div id="top-image">
             <div id="top-space"></div>
-            <div id="weather" onclick="getWeather()">
-                <div>
-                    <iframe id="weather-ifm" scrolling="auto" src="https://tianqiapi.com/api.php" frameborder="0">
-                    </iframe>
-                </div>
-            </div>
+            <div id="weather" onclick="getMoreWeather()"></div>
+            <div id="weather-more" onblur="hideMoreWeather()"></div>
             <div id="logo-top-space"></div>
             <div id="s-logo">
                 <span id="logo"><img id="logo-img" src="img/logo.png" /></span>

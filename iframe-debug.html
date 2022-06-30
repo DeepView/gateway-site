@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iFrame-Debug</title>
+    <style type="text/css">
+        .pc { display: none; position: fixed; left: 0; right: 0; bottom: 0; top: 52px;  } 
+        .show { display: block !important; color: white; }
+        body { background-color: rgb(61, 61, 61); }
+    </style>
+</head>
+<body>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>
+        function changeStyle() {
+            let iframeDocument = document.getElementsByTagName("iframe")[0].contentDocument;
+            iframeDocument.body.style.color = "white";
+            alert("Hey");
+        }
+
+        function load() {
+            $(window.frames[0].document).find('body').css({'color':'while'});
+            alert('load-completed');
+        }
+    </script>
+    <div class="pc show" onload="changeStyle()">
+        <iframe id="weather-ifm" allowTransparency="true" scrolling="auto" src="https://tianqiapi.com/api.php" frameborder="0" onload="load()">
+        </iframe>
+    </div>
+</body>
+</html>

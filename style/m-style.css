@@ -2,6 +2,7 @@ html, body, #top-image {
     margin: 0px;
     padding: 0px;
     height: 100%;
+    
 }
 #search-box {
     width: 800px;
@@ -117,12 +118,15 @@ div.tab button.active {
 }
 #weather {
     font-family: 'Microsoft YaHei';
-    width: 220px;
+    width: 90px;
     height: 30px;
+    line-height: 30px;
     color: rgb(89, 30, 74);
     background-color: rgba(255, 255, 255, 0.5);
+    /*
     padding-left: 7px;
     padding-top: 2.5px;
+    */
     border-radius: 15px;
     margin-left: 20px;
 }
@@ -147,4 +151,17 @@ div.tab button.active {
     width: 20px; 
     height: 20px; 
     padding: 10 10 10 10px;
+    position: relative;
+    top: 45%;
+    left: 25%;
+    transform: translate(-50%,-50%);
+}
+#w-ifm {
+    height: 800px;
+    width: 480px;
+    border: 2px;
+    border-radius: 10px;
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 20px;
 }
