@@ -8,7 +8,8 @@
         <link rel="stylesheet" type="text/css" href="style/m-style.css">
         <style id="main-style" type="text/css"></style>
 	</head>
-	<body onload="documentAction()" onfocus="getWeather()">
+    <!--<body onload="documentAction()" onfocus="getWeather()">-->
+	<body onload="documentAction()">
         <script src="js/jquery-3.6.0.min.js"></script>
         <script type="text/javascript">
             var coordinateString = '';
@@ -27,6 +28,7 @@
                 document.getElementById(provider).style.display = "block";
                 evt.currentTarget.className += " active";
             }
+            /*
             function getGeoLocation() {               
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -81,6 +83,7 @@
                 we.style.display = "none";
                 visibility = true;    
             }
+            */
             function changeBgImage() {
                 var day = new Date().getDay();
                 var ws = document.getElementById("main-style");
@@ -94,21 +97,9 @@
                     + 'width: 100%;'
                     + 'height: 100%; }';
             }
-            function applyIFrameStyle() {
-                $('#weather-ifm').load(function () {
-                    let cssLink = document.createElement("link");
-                    cssLink.href = "ifm-style.css";
-                    cssLink.rel = "stylesheet";
-                    cssLink.type = "text/css";
-                    $('#weather-ifm')
-                        .contents().find("head")
-                        .append($('<link rel="stylesheet" type="text/css" href="ifm-style.css">')
-                    );
-                });
-            }
             function test() { alert("Hey,boy."); }
             function documentAction() {
-                getGeoLocation();
+                //getGeoLocation();
                 changeBgImage();
             }
         </script>      
@@ -120,8 +111,38 @@
         -->
         <div id="top-image">
             <div id="top-space"></div>
-            <div id="weather" onclick="getMoreWeather()"></div>
+            <!--
+            <div id="weather" onclick="getMoreWeather()"></div>           
             <div id="weather-more" onblur="hideMoreWeather()"></div>
+            -->
+            <div id="he-plugin-simple"></div>
+            <script>
+                WIDGET = {
+                    "CONFIG": {
+                        "modules": "12034",
+                        "background": "1",
+                        "tmpColor": "FFFFFF",
+                        "tmpSize": "16",
+                        "cityColor": "FFFFFF",
+                        "citySize": "16",
+                        "aqiColor": "FFFFFF",
+                        "aqiSize": "16",
+                        "weatherIconSize": "24",
+                        "alertIconSize": "18",
+                        "padding": "10px 10px 10px 10px",
+                        "shadow": "0",
+                        "language": "auto",
+                        "borderRadius": "30",
+                        "fixed": "true",
+                        "vertical": "top",
+                        "horizontal": "left",
+                        "left": "20",
+                        "top": "20",
+                        "key": "111f2fec40184e61b1b652ac64f2a23b"
+                    }
+                }
+            </script>
+            <script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script>
             <div id="logo-top-space"></div>
             <div id="s-logo">
                 <span id="logo"><img id="logo-img" src="img/logo.png" /></span>
