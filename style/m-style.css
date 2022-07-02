@@ -1,8 +1,7 @@
 html, body, #top-image {
     margin: 0px;
     padding: 0px;
-    height: 100%;
-    
+    height: 100%;    
 }
 #search-box {
     width: 800px;
@@ -36,7 +35,7 @@ input[type=text]:focus {
     outline: none;
     border: 2px solid rgb(89, 30, 74);
 }
-input[type=text]::placeholder { text-align: center; transition: text-align 0.3s linear; }
+input[type=text]::placeholder { text-align: center; }
 input[type=text]:focus::placeholder { text-align: left; }
 #go {
     display: none;
@@ -164,4 +163,7 @@ div.tab button.active {
     position: absolute;
     margin-left: 20px;
     margin-top: 20px;
+}
+#Google, #Baidu, #Bing, #Wikipedia {
+    transition: 0.3s;
 }
