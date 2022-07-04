@@ -167,3 +167,7 @@ div.tab button.active {
 #Google, #Baidu, #Bing, #Wikipedia {
     transition: 0.3s;
 }
+#git-link {
+    color: rgb(90, 170, 255);
+    text-decoration: none;
+}
