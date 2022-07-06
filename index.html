@@ -2,122 +2,70 @@
 <html lang="zh-CN">
 	<head>
         <meta content="text/html;charset=utf-8" http-equiv="content-type"/>
-        <meta name="description" content="">
-        <meta name="keywords" content="">
-        <title>AnySearch</title>
-        <link rel="Bookmark" type="image/png" href="images/logo-icon.png" />
-        <link rel="icon" type="image/png" href="images/logo-icon.png" />
-        <link rel="shortcut icon" type="image/png" href="images/logo-icon.png" />
+        <meta name="author" content="Carlos" />
+        <meta name="keywords" content="AnySearch">
+        <meta name="description" content="This is a search website.">
+        <link rel="Bookmark" type="image/x-icon" href="img/icons/logo-icon.ico" />
+        <link rel="icon" type="image/x-icon" href="img/icons/logo-icon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="img/icons/logo-icon.ico" />
         <link rel="stylesheet" type="text/css" href="style/m-style.css" />
         <style id="main-style" type="text/css"></style>
-	    <script type="text/javascript">
-            function changeSearchEngine(evt, provider) {
-                var i, tabcontent, tablinks;
-                tabcontent = document.getElementsByClassName("tabcontent");
-                for (i = 0; i < tabcontent.length; i++) {
-                    tabcontent[i].style.display = "none";
-                }
-                tablinks = document.getElementsByClassName("tablinks");
-                for (i = 0; i < tablinks.length; i++) {
-                    tablinks[i].className = tablinks[i].className.replace(" active", "");
-                }
-                document.getElementById(provider).style.display = "block";
-                evt.currentTarget.className += " active";
-            }
-            function changeBgImage() {
-                var day = new Date().getDay();
-                var ws = document.getElementById("main-style");
-                var we = document.getElementById("weather");
-                var coordinateString = '';
-                ws.innerHTML += '#top-image { background-image: url("img/bgimg-0' + day + '.webp");'
-                    + 'margin-top: 0px;'
-                    + 'background-position: center;'
-                    + 'background-repeat: no-repeat;'
-                    + 'background-attachment: fixed;'
-                    + 'width: 100%;'
-                    + 'height: 100%; }';
-            }
-        </script>
+        <title>AnySearch</title>
     </head>
     <body onload="changeBgImage()">
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script>
         <div id="top-image">
-            <div id="top-space"></div>
-            <div id="he-plugin-simple"></div>
-            <script>
-                WIDGET = {
-                    "CONFIG": {
-                        "modules": "12034",
-                        "background": "5",
-                        "tmpColor": "FFFFFF",
-                        "tmpSize": "16",
-                        "cityColor": "FFFFFF",
-                        "citySize": "16",
-                        "aqiColor": "FFFFFF",
-                        "aqiSize": "16",
-                        "weatherIconSize": "24",
-                        "alertIconSize": "18",
-                        "padding": "10px 10px 10px 10px",
-                        "shadow": "0",
-                        "language": "auto",
-                        "borderRadius": "30",
-                        "fixed": "true",
-                        "vertical": "top",
-                        "horizontal": "left",
-                        "left": "20",
-                        "top": "20",
-                        "key": "111f2fec40184e61b1b652ac64f2a23b"
-                    }
-                }
-            </script>
-            <script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script>
-            <div id="logo-top-space"></div>
-            <div id="s-logo">
-                <span id="logo"><img id="logo-img" src="img/logo.png" /></span>
+        <div id="top-space"></div>
+        <span id="he-plugin-simple"></span>
+        <div id="logo-top-space"></div>
+        <div id="s-logo">
+            <span id="logo"><img id="logo-img" src="img/logo.png" /></span>
+        </div>
+        <div id="tab-top-space"></div>
+        <div id="search-tab">
+            <div class="tab">
+                <button class="tablinks" onclick="changeSearchEngine(event, 'Google')">Google</button>
+                <button class="tablinks active" onclick="changeSearchEngine(event, 'Baidu')">Baidu</button>
+                <button class="tablinks" onclick="changeSearchEngine(event, 'Bing')">Bing</button>
+                <button class="tablinks" onclick="changeSearchEngine(event, 'Wikipedia')">Wikipedia</button>
             </div>
-            <div id="tab-top-space"></div>
-            <div id="search-tab">
-                <div class="tab">
-                    <button class="tablinks" onclick="changeSearchEngine(event, 'Google')">Google</button>
-                    <button class="tablinks active" onclick="changeSearchEngine(event, 'Baidu')">Baidu</button>
-                    <button class="tablinks" onclick="changeSearchEngine(event, 'Bing')">Bing</button>
-                    <button class="tablinks" onclick="changeSearchEngine(event, 'Wikipedia')">Wikipedia</button>
-                </div> 
-                <div id="search-top-space"></div>
-                <div id="Google" class="tabcontent" style="display: none;">
-                    <div id="search-box">
-                        <form action="https://www.google.com/search" method="get">
-                            <input type="text" name="q" placeholder="Google Search" autocomplete="off" />
-                            <button id="go" type="submit"></button>
-                        </form>
-                    </div>
-                </div>           
-                <div id="Baidu" class="tabcontent" style="display: block;">
-                    <div id="search-box">
-                        <form action="https://www.baidu.com/s" method="get">
-                            <input type="text" name="wd" placeholder="Baidu Search" autocomplete="off" />
-                            <button id="go" type="submit"></button>
-                        </form>
-                    </div>
-                </div>            
-                <div id="Bing" class="tabcontent" style="display: none;">
-                    <div id="search-box">
-                        <form action="https://cn.bing.com/search" method="get">
-                            <input type="text" name="q" placeholder="Bing Search" autocomplete="off" />
-                            <button id="go" type="submit"></button>
-                        </form>
-                    </div>
-                </div>    
-                <div id="Wikipedia" class="tabcontent" style="display: none;">
-                    <div id="search-box">
-                        <form action="https://zh.wikipedia.org/w/index.php" method="get">
-                            <input type="text" name="search" placeholder="Wikipedia Search" autocomplete="off" />
-                            <button id="go" type="submit"></button>
-                        </form>
-                    </div>
+            <div id="search-top-space"></div>
+            <div id="Google" class="tabcontent" style="display: none;">
+                <div id="search-box">
+                    <form action="https://www.google.com/search" method="get">
+                        <input type="text" name="q" placeholder="Google Search" autocomplete="off" />
+                        <button id="go" type="submit"></button>
+                    </form>
                 </div>
-            </div>        
-            <div id="rights">
-                <p>Copyight &copy; 2022 Carlos, All Rights Reserved.</p><p>This website comes from the open source project <a href="https://github.com/DeepView/gateway-site" target="_blank" id="git-link">DeepView/gateway-site</a>, please abide by the open source agreement when using it.</p>
+            </div>           
+            <div id="Baidu" class="tabcontent" style="display: block;">
+                <div id="search-box">
+                    <form action="https://www.baidu.com/s" method="get">
+                        <input type="text" name="wd" placeholder="Baidu Search" autocomplete="off" />
+                        <button id="go" type="submit"></button>
+                    </form>
+                </div>
+            </div>            
+            <div id="Bing" class="tabcontent" style="display: none;">
+                <div id="search-box">
+                    <form action="https://cn.bing.com/search" method="get">
+                        <input type="text" name="q" placeholder="Bing Search" autocomplete="off" />
+                        <button id="go" type="submit"></button>
+                    </form>
+                </div>
+            </div>    
+            <div id="Wikipedia" class="tabcontent" style="display: none;">
+                <div id="search-box">
+                    <form action="https://zh.wikipedia.org/w/index.php" method="get">
+                        <input type="text" name="search" placeholder="Wikipedia Search" autocomplete="off" />
+                        <button id="go" type="submit"></button>
+                    </form>
+                </div>
             </div>
+        </div>        
+        <div id="rights">
+            <p>Copyight &copy; 2022 Carlos, All Rights Reserved.</p><p>This website comes from the open source project <a href="https://github.com/DeepView/gateway-site" target="_blank" id="git-link">DeepView/gateway-site</a>, please abide by the open source agreement when using it.</p>
+        </div>
 	</body>
 </html>
