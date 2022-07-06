@@ -1,0 +1,22 @@
+#search-box {
+    width: 380px;
+}
+input[type=text] {
+    width: 380px;
+}
+#search-tab {
+    width: 380px;
+}
+body {
+    width: 390px;
+}
+#tab-top-space {
+    height: 20px;
+}
+#rights {
+    height: 130px;
+}
+div.tab {
+    margin-left: 50%;
+    transform: translateX(-45%);
+}

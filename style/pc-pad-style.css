@@ -26,7 +26,7 @@ input[type=text] {
     border-radius: 25px;
     box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
-    transition: 0.3s; 
+    transition: 0.3s;
 }
 input[type=text]:hover {
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.6);
@@ -57,7 +57,7 @@ div.tab {
     border: 0px;
     background-color: #f1f1f100;
     margin-left: 50%;
-    transform: translateX(-45.75%);
+    transform: translateX(-45%);
 }
 div.tab button {
     background-color: inherit;
@@ -109,10 +109,6 @@ div.tab button.active {
     line-height: 30px;
     color: rgb(89, 30, 74);
     background-color: rgba(255, 255, 255, 0.5);
-    /*
-    padding-left: 7px;
-    padding-top: 2.5px;
-    */
     border-radius: 15px;
     margin-left: 20px;
 }
