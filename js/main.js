@@ -1,15 +1,26 @@
 function changeSearchEngine(evt, provider) {
-    var i, tabcontent, tablinks;
+    var i, tabcontent, tablinks, elemlinks, tabs;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
     tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    elemlinks = document.getElementsByClassName("elemlinks")
+    tabs = document.getElementsByClassName("tab");
+    if (tabs[0].style.display == "none")
+    {
+        for (i = 0; i < tablinks.length; i++){
+            elemlinks[i].className = elemlinks[i].className.replace(" active", "");
+        }           
+        document.getElementById(provider).style.display = "block";
+        evt.currentTarget.className += " active";
+    } else {
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(provider).style.display = "block";
+        evt.currentTarget.className += " active";
     }
-    document.getElementById(provider).style.display = "block";
-    evt.currentTarget.className += " active";
 }
 function changeBgImage() {
     var day = new Date().getDay();

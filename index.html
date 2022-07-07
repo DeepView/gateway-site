@@ -18,54 +18,76 @@
         <script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script>
         <div id="top-image">
-        <div id="top-space"></div>
-        <span id="he-plugin-simple"></span>
-        <div id="logo-top-space"></div>
-        <div id="s-logo">
-            <span id="logo"><img id="logo-img" src="img/logo.png" /></span>
-        </div>
-        <div id="tab-top-space"></div>
-        <div id="search-tab">
-            <div class="tab">
-                <button class="tablinks" onclick="changeSearchEngine(event, 'Google')">Google</button>
-                <button class="tablinks active" onclick="changeSearchEngine(event, 'Baidu')">Baidu</button>
-                <button class="tablinks" onclick="changeSearchEngine(event, 'Bing')">Bing</button>
-                <button class="tablinks" onclick="changeSearchEngine(event, 'Wikipedia')">Wikipedia</button>
+            <div id="top-space"></div>
+            <span id="he-plugin-simple"></span>
+            <span class="search-menu">
+                <ul class="nav">
+                    <li class="drop-down">
+                        <a class="menu" href="#">搜索引擎</a>
+                        <ul class="drop-down-content">
+                            <li>
+                                <a href="#" class="elemlinks" onclick="changeSearchEngine(event, 'Google')">Google</a>
+                            </li>
+                            <li>
+                                <a href="#" class="elemlinks active" onclick="changeSearchEngine(event, 'Baidu')">Baidu</a>
+                            </li>
+                            <li>
+                                <a href="#" class="elemlinks" onclick="changeSearchEngine(event, 'Bing')">Bing</a>
+                            </li>
+                            <li>
+                                <a href="#" class="elemlinks" onclick="changeSearchEngine(event, 'Wikipedia')">Wikipedia</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </span>
+            <div id="logo-top-space"></div>
+            <div id="s-logo">
+                <span id="logo"><img id="logo-img" src="img/logo.png" /></span>
             </div>
-            <div id="search-top-space"></div>
-            <div id="Google" class="tabcontent" style="display: none;">
-                <div id="search-box">
-                    <form action="https://www.google.com/search" method="get">
-                        <input type="text" name="q" placeholder="Google Search" autocomplete="off" />
-                        <button id="go" type="submit"></button>
-                    </form>
+            <div id="tab-top-space"></div>
+            <div id="search-tab">
+                <div class="tab">
+                    <button class="tablinks" onclick="changeSearchEngine(event, 'Google')">Google</button>
+                    <button class="tablinks active" onclick="changeSearchEngine(event, 'Baidu')">Baidu</button>
+                    <button class="tablinks" onclick="changeSearchEngine(event, 'Bing')">Bing</button>
+                    <button class="tablinks" onclick="changeSearchEngine(event, 'Wikipedia')">Wikipedia</button>
                 </div>
-            </div>           
-            <div id="Baidu" class="tabcontent" style="display: block;">
-                <div id="search-box">
-                    <form action="https://www.baidu.com/s" method="get">
-                        <input type="text" name="wd" placeholder="Baidu Search" autocomplete="off" />
-                        <button id="go" type="submit"></button>
-                    </form>
-                </div>
-            </div>            
-            <div id="Bing" class="tabcontent" style="display: none;">
-                <div id="search-box">
-                    <form action="https://cn.bing.com/search" method="get">
-                        <input type="text" name="q" placeholder="Bing Search" autocomplete="off" />
-                        <button id="go" type="submit"></button>
-                    </form>
+                <div id="search-top-space"></div>
+                <div id="Google" class="tabcontent" style="display: none;">
+                    <div id="search-box">
+                        <form action="https://www.google.com/search" method="get">
+                            <input type="text" name="q" placeholder="Google Search" autocomplete="off" />
+                            <button id="go" type="submit"></button>
+                        </form>
+                    </div>
+                </div>           
+                <div id="Baidu" class="tabcontent" style="display: block;">
+                    <div id="search-box">
+                        <form action="https://www.baidu.com/s" method="get">
+                            <input type="text" name="wd" placeholder="Baidu Search" autocomplete="off" />
+                            <button id="go" type="submit"></button>
+                        </form>
+                    </div>
+                </div>            
+                <div id="Bing" class="tabcontent" style="display: none;">
+                    <div id="search-box">
+                        <form action="https://cn.bing.com/search" method="get">
+                            <input type="text" name="q" placeholder="Bing Search" autocomplete="off" />
+                            <button id="go" type="submit"></button>
+                        </form>
+                    </div>
+                </div>    
+                <div id="Wikipedia" class="tabcontent" style="display: none;">
+                    <div id="search-box">
+                        <form action="https://zh.wikipedia.org/w/index.php" method="get">
+                            <input type="text" name="search" placeholder="Wikipedia Search" autocomplete="off" />
+                            <button id="go" type="submit"></button>
+                        </form>
+                    </div>
                 </div>
             </div>    
-            <div id="Wikipedia" class="tabcontent" style="display: none;">
-                <div id="search-box">
-                    <form action="https://zh.wikipedia.org/w/index.php" method="get">
-                        <input type="text" name="search" placeholder="Wikipedia Search" autocomplete="off" />
-                        <button id="go" type="submit"></button>
-                    </form>
-                </div>
-            </div>
-        </div>        
+        </div>    
         <div id="rights">
             <p>Copyight &copy; 2022 Carlos, All Rights Reserved.</p><p>This website comes from the open source project <a href="https://github.com/DeepView/gateway-site" target="_blank" id="git-link">DeepView/gateway-site</a>, please abide by the open source agreement when using it.</p>
         </div>
