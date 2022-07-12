@@ -7,7 +7,7 @@ input[type=text] {
 #search-tab {
     width: 380px;
 }
-body {
+html, body, #top-image {
     width: 390px;
 }
 #tab-top-space {

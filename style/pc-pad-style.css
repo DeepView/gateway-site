@@ -1,8 +1,14 @@
-html, body, #top-image {
+html, body, #top-image{
     margin: 0px;
     padding: 0px;
     height: 100%;
     background-color: rgb(64, 64, 64);
+}
+#mask {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    transition: 0.5s;
 }
 #search-box {
     width: 800px;

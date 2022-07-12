@@ -22,6 +22,12 @@ function changeSearchEngine(evt, provider) {
         evt.currentTarget.className += " active";
     }
 }
+function displayAlphaMask() {
+    $("#mask").css('background-color', 'rgba(0, 0, 0, 0.5)');
+}
+function hideAlphaMask() {
+    $("#mask").css('background-color', 'rgba(0, 0, 0, 0)');
+}
 function changeBgImage() {
     var day = new Date().getDay();
     var ws = document.getElementById("main-style");
