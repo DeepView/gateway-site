@@ -1,5 +1,29 @@
+var changeToGoogleLink = function() { changeSearchEngineProviderLink('https://www.google.com'); }
+var changeToBaiduLink = function() { changeSearchEngineProviderLink('https://www.baidu.com'); }
+var changeToMicrosoftBingLink = function() { changeSearchEngineProviderLink('https://cn.bing.com'); }
+var changeToWikipediaLink = function() { changeSearchEngineProviderLink('https://zh.wikipedia.org'); }
+function changeSearchEngineProviderLink(linkString) {
+    document.getElementById('se-provider').setAttribute('href', linkString);
+}
 function changeSearchEngine(evt, provider) {
     var i, tabcontent, tablinks, elemlinks, tabs;
+    switch (provider) {
+        case 'Google':
+            changeToGoogleLink();
+            break;
+        case 'Baidu':
+            changeToBaiduLink();
+            break;
+        case 'Bing':
+            changeToMicrosoftBingLink();
+            break;
+        case 'Wikipedia':
+            changeToWikipediaLink();
+            break;
+        default:
+            changeSearchEngineProviderLink('javascript;');
+            break;
+    }
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
@@ -23,7 +47,7 @@ function changeSearchEngine(evt, provider) {
     }
 }
 function displayAlphaMask() {
-    $("#mask").css('background-color', 'rgba(0, 0, 0, 0.5)');
+    $("#mask").css('background-color', 'rgba(0, 0, 0, 0.7)');
 }
 function hideAlphaMask() {
     $("#mask").css('background-color', 'rgba(0, 0, 0, 0)');

@@ -8,7 +8,7 @@ html, body, #top-image{
     margin: 0px;
     padding: 0px;
     height: 100%;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 #search-box {
     width: 800px;
@@ -30,12 +30,12 @@ input[type=text] {
     padding-left: 25px;
     padding-right: 25px;
     border-radius: 25px;
-    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.35);
     box-sizing: border-box;
     transition: 0.3s;
 }
 input[type=text]:hover {
-    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.7);
     border: 2px solid rgb(128, 128, 128);
 }
 input[type=text]:focus {
@@ -57,6 +57,10 @@ input[type=text]:focus::placeholder { text-align: left; }
     width: 165px;
     height: 75px;
     border-radius: 37.5px;
+    transition: 0.3s;
+}
+#logo-img:hover {
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.35);
 }
 div.tab {
     overflow: hidden;
