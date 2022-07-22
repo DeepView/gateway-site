@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSH Terminal Web</title>
+</head>
+<body onload="connectWebSshServer()">
+    <script>
+        function connectWebSshServer() {
+            // connect to your ssh server
+            //wssh.connect(hostname, port, username, password, privatekey, passphrase, totp);
+            // pass an object to wssh.connect
+            var opts = {
+                hostname: '121.4.70.133',
+                port: '8000',
+                username: 'ubuntu',
+                password: 'wu950807',
+                privatekey: '',
+                passphrase: '',
+                totp: ''
+            };
+            //wssh.connect(opts);
+            // without an argument, wssh will use the form data to connect
+            wssh.connect();
+
+            // set a new encoding for client to use
+            wssh.set_encoding(encoding);
+
+            // reset encoding to use the default one
+            wssh.reset_encoding();
+
+            // send a command to the server
+            wssh.send('ls -l');
+        }
+    </script>  
+</body>
+</html>
