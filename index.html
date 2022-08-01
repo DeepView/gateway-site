@@ -15,18 +15,18 @@
         <link rel="icon" type="image/x-icon" href="img/icons/logo-icon.ico" />
         <link rel="shortcut icon" type="image/x-icon" href="img/icons/logo-icon.ico" />
         <link rel="stylesheet" type="text/css" href="style/pc-pad-style.css" />
-        <link rel="stylesheet" type="text/css" href="style/phone-style.css" media="screen and (max-width: 768px)" />
+        <link rel="stylesheet" type="text/css" href="style/phone-style.css" media="screen and (max-width: 600px)" />
         <style id="main-style" type="text/css"></style>
         <title>AnySearch</title>
     </head>
-    <body onload="changeBgImage()">
+    <body onload="init()">
         <script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" src="js/jquery-lib-v3.6.0/jquery.std.min.js"></script>
         <script type="text/javascript" src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script>
         <div id="top-image">
             <div id="mask">
                 <div id="top-space"></div>
-                <span id="he-plugin-simple"></span>
+                <a id="carlos-weather" href="#" target="_self"><span id="he-plugin-simple"></span></a>
                 <span class="search-menu">
                     <ul class="nav">
                         <li class="drop-down">

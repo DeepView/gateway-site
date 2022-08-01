@@ -3,7 +3,17 @@ var changeToBaiduLink = function() { changeSearchEngineProviderLink('https://www
 var changeToMicrosoftBingLink = function() { changeSearchEngineProviderLink('https://cn.bing.com'); }
 var changeToWikipediaLink = function() { changeSearchEngineProviderLink('https://zh.wikipedia.org'); }
 function changeSearchEngineProviderLink(linkString) {
-    document.getElementById('se-provider').setAttribute('href', linkString);
+    setElemAttr('#se-provider', 'href', linkString);
+}
+function changeWeatherLink() {
+    var carlosWeatherLink = 'https://widget-page.qweather.net/h5/index.html?md=0123456&bg=1&lc=auto&key=62d90441d8fc4be8989e7edbd3bc3f4a&v=_1659329448147';
+    if (window.innerWidth <= 600) {
+        setElemAttr('#carlos-weather', 'href', carlosWeatherLink);
+        setElemAttr('#carlos-weather', 'target', '_blank');
+    }
+}
+function setElemAttr(element, attribute, value) {
+    $(element).attr(attribute, value);
 }
 function changeSearchEngine(evt, provider) {
     var i, tabcontent, tablinks, elemlinks, tabs;
@@ -21,7 +31,7 @@ function changeSearchEngine(evt, provider) {
             changeToWikipediaLink();
             break;
         default:
-            changeSearchEngineProviderLink('javascript;');
+            changeSearchEngineProviderLink('err/http404.html');
             break;
     }
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -47,10 +57,13 @@ function changeSearchEngine(evt, provider) {
     }
 }
 function displayAlphaMask() {
-    $("#mask").css('background-color', 'rgba(0, 0, 0, 0.7)');
+    setStyleAttr('#mask', 'background-color', 'rgba(0, 0, 0, 0.7)');
 }
 function hideAlphaMask() {
-    $("#mask").css('background-color', 'rgba(0, 0, 0, 0)');
+    setStyleAttr('#mask', 'background-color', 'rgba(0, 0, 0, 0)');
+}
+function setStyleAttr(element, attribute, value) {
+    $(element).css(attribute, value);
 }
 function changeBgImage() {
     var day = new Date().getDay();
@@ -62,6 +75,10 @@ function changeBgImage() {
         + 'background-attachment: fixed;'
         + 'width: 100%;'
         + 'height: 100%; }';
+}
+function init() {
+    changeBgImage();
+    changeWeatherLink();
 }
 WIDGET = {
     "CONFIG": {
