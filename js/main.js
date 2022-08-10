@@ -16,27 +16,35 @@ function setElemAttr(element, attribute, value) {
     $(element).attr(attribute, value);
 }
 function changeSearchEngine(evt, provider) {
-    var i, tabcontent, tablinks, elemlinks, tabs;
+    var i, tablinks, elemlinks, tabs;
     switch (provider) {
-        case 'Google':
+        case 'google':
             changeToGoogleLink();
+            setElemAttr('#search-form', 'action', 'https://www.google.com/search');
+            setElemAttr('#search-input', 'name', 'q');
+            setElemAttr('#search-input', 'placeholder', 'Google Search');
             break;
-        case 'Baidu':
+        case 'baidu':
             changeToBaiduLink();
+            setElemAttr('#search-form', 'action', 'https://www.baidu.com/s');
+            setElemAttr('#search-input', 'name', 'wd');
+            setElemAttr('#search-input', 'placeholder', 'Baidu Search');
             break;
-        case 'Bing':
+        case 'bing':
             changeToMicrosoftBingLink();
+            setElemAttr('#search-form', 'action', 'https://cn.bing.com/search');
+            setElemAttr('#search-input', 'name', 'q');
+            setElemAttr('#search-input', 'placeholder', 'Bing Search');
             break;
-        case 'Wikipedia':
+        case 'wikipedia':
             changeToWikipediaLink();
+            setElemAttr('#search-form', 'action', 'https://zh.wikipedia.org/w/index.php');
+            setElemAttr('#search-input', 'name', 'search');
+            setElemAttr('#search-input', 'placeholder', 'Wikipedia Search');
             break;
         default:
             changeSearchEngineProviderLink('err/http404.html');
             break;
-    }
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
     }
     tablinks = document.getElementsByClassName("tablinks");
     elemlinks = document.getElementsByClassName("elemlinks")
@@ -46,15 +54,14 @@ function changeSearchEngine(evt, provider) {
         for (i = 0; i < tablinks.length; i++){
             elemlinks[i].className = elemlinks[i].className.replace(" active", "");
         }           
-        document.getElementById(provider).style.display = "block";
         evt.currentTarget.className += " active";
     } else {
         for (i = 0; i < tablinks.length; i++) {
             tablinks[i].className = tablinks[i].className.replace(" active", "");
         }
-        document.getElementById(provider).style.display = "block";
         evt.currentTarget.className += " active";
     }
+
 }
 function displayAlphaMask() {
     setStyleAttr('#mask', 'background-color', 'rgba(0, 0, 0, 0.7)');

@@ -167,3 +167,4 @@ div.tab button.active {
 .search-menu {
     display: none;
 }
+#search-div { display: block; }
