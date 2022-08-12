@@ -20,30 +20,37 @@
         <style id="main-style" type="text/css"></style>
         <title>AnySearch</title>
     </head>
-    <body onload="init()">
+    <body onload="init()" onresize="changeWeatherLink()">
         <script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" src="js/jquery-lib-v3.6.0/jquery.std.min.js"></script>
-        <script type="text/javascript" src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script>
+        <script type="text/javascript" src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0">
+        </script>
         <div id="top-image">
             <div id="mask">
                 <div id="top-space"></div>
-                <a id="carlos-weather" href="https://www.qweather.com/" target="_blank"><span id="he-plugin-simple"></span></a>
+                <a id="carlos-weather" href="https://www.qweather.com/" target="_blank">
+                    <span id="he-plugin-simple"></span>
+                </a>
                 <span class="search-menu">
                     <ul class="nav">
                         <li class="drop-down">
-                            <a class="menu" href="#">搜索引擎</a>
+                            <a class="menu" href="javascript:void(0)">搜索引擎</a>
                             <ul class="drop-down-content">
                                 <li>
-                                    <a href="#" class="elemlinks" onclick="changeSearchEngine(event, 'google')">Google</a>
+                                    <a href="javascript:void(0)" class="elemlinks"
+                                        onclick="changeSearchEngine(event, 'google');drawingRecordsInterface();">Google</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="elemlinks active" onclick="changeSearchEngine(event, 'baidu')">Baidu</a>
+                                    <a href="javascript:void(0)" class="elemlinks active"
+                                        onclick="changeSearchEngine(event, 'baidu');drawingRecordsInterface();">Baidu</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="elemlinks" onclick="changeSearchEngine(event, 'bing')">Bing</a>
+                                    <a href="javascript:void(0)" class="elemlinks"
+                                        onclick="changeSearchEngine(event, 'bing');drawingRecordsInterface();">Bing</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="elemlinks" onclick="changeSearchEngine(event, 'wikipedia')">Wikipedia</a>
+                                    <a href="javascript:void(0)" class="elemlinks"
+                                        onclick="changeSearchEngine(event, 'wikipedia');drawingRecordsInterface();">Wikipedia</a>
                                 </li>
                             </ul>
                         </li>
@@ -60,32 +67,49 @@
                 <div id="tab-top-space"></div>
                 <div id="search-tab">
                     <div class="tab">
-                        <button id="google" class="tablinks" onclick="changeSearchEngine(event, 'google')">Google</button>
-                        <button id="baidu" class="tablinks active" onclick="changeSearchEngine(event, 'baidu')">Baidu</button>
-                        <button id="bing" class="tablinks" onclick="changeSearchEngine(event, 'bing')">Bing</button>
-                        <button id="wikipedia" class="tablinks" onclick="changeSearchEngine(event, 'wikipedia')">Wikipedia</button>
+                        <button id="google" class="tablinks"
+                            onclick="changeSearchEngine(event, 'google');drawingRecordsInterface();">Google</button>
+                        <button id="baidu" class="tablinks active"
+                            onclick="changeSearchEngine(event, 'baidu');drawingRecordsInterface();">Baidu</button>
+                        <button id="bing" class="tablinks"
+                            onclick="changeSearchEngine(event, 'bing');drawingRecordsInterface();">Bing</button>
+                        <button id="wikipedia" class="tablinks"
+                            onclick="changeSearchEngine(event, 'wikipedia');drawingRecordsInterface();">Wikipedia</button>
                     </div>
                     <div id="search-top-space"></div>
                     <div id="search-div">
                         <div id="search-box">
                             <form id="search-form" action="https://www.baidu.com/s" method="get">
-                                <input id="search-input" type="text" name="wd" placeholder="Baidu Search" autocomplete="off" onfocus="displayAlphaMask()" onblur="hideAlphaMask()" />
-                                <button id="go" type="submit"></button>
+                                <input id="search-input" type="text" name="wd" placeholder="Baidu Search"
+                                    autocomplete="off" onfocus="displayAlphaMask();display('#shr-father-box', 'block');"
+                                    onblur="hideAlphaMask();" />
+                                <button id="go" type="submit"
+                                    onclick="toStorage(generateKey(), getInputValue('#search-input'))"></button>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>  
-        <div>
-        <div id="rights">
-            <p>Copyight &copy; 2022 Carlos, All Rights Reserved. The last updated is UTC+8 August 10, 2022, 10:45.</p>
-            <p>
-                This website comes from the open source project 
-                <a href="https://github.com/DeepView/gateway-site" target="_blank" id="git-link">
-                    DeepView/gateway-site
-                </a>
-                , please abide by the open source agreement when using it.
-            </p>
+                <div id="shr-father-box">
+                    <div id="history">
+                        <p>搜索历史记录</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div id="rights">
+                    <p>
+                        Copyight &copy; 2022 Carlos, All Rights Reserved. The last updated is UTC+8 August 12, 2022,
+                        21:25.
+                    </p>
+                    <p>
+                        This website comes from the open source project
+                        <a href="https://github.com/DeepView/gateway-site" target="_blank" id="git-link">
+                            DeepView/gateway-site
+                        </a>
+                        , please abide by the open source agreement when using it.
+                    </p>
+                </div>
+            </div>
         </div>
-	</body>
+    </body>
 </html>

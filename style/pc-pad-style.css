@@ -1,15 +1,21 @@
-html, body, #top-image{
+html,
+body,
+#top-image {
     margin: 0px;
     padding: 0px;
     height: 100%;
     background-color: rgb(64, 64, 64);
 }
+
 #mask {
     margin: 0px;
     padding: 0px;
     height: 100%;
+    width: 100%;
     transition: 0.3s;
+    position: relative;
 }
+
 #search-box {
     width: 800px;
     height: 50px;
@@ -18,6 +24,7 @@ html, body, #top-image{
     font-size: 14px;
     padding: 0 0 0 0px;
 }
+
 input[type=text] {
     margin: 0 0 0 0px;
     width: 800px;
@@ -34,34 +41,48 @@ input[type=text] {
     box-sizing: border-box;
     transition: 0.3s;
 }
+
 input[type=text]:hover {
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.7);
     border: 2px solid rgb(128, 128, 128);
 }
+
 input[type=text]:focus {
     outline: none;
     border: 2px solid rgb(89, 30, 74);
+    color: rgb(89, 30, 74);
 }
-input[type=text]::placeholder { text-align: center; }
-input[type=text]:focus::placeholder { text-align: left; }
+
+input[type=text]::placeholder {
+    text-align: center;
+}
+
+input[type=text]:focus::placeholder {
+    text-align: left;
+}
+
 #go {
     display: none;
 }
+
 #s-logo {
     text-align: center;
     font-family: 'Microsoft YaHei';
     font-size: 18px;
     color: white;
 }
+
 #logo #logo-img {
     width: 165px;
     height: 75px;
     border-radius: 37.5px;
     transition: 0.3s;
 }
+
 #logo-img:hover {
     box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.35);
 }
+
 div.tab {
     overflow: hidden;
     border: 0px;
@@ -69,6 +90,7 @@ div.tab {
     margin-left: 50%;
     transform: translateX(-45%);
 }
+
 div.tab button {
     background-color: inherit;
     float: left;
@@ -80,26 +102,31 @@ div.tab button {
     font-size: 17px;
     color: white;
     border-radius: 50px;
-}    
+}
+
 div.tab button:hover {
     background-color: rgba(255, 255, 255, 0.25);
     border-radius: 50px;
 }
+
 div.tab button.active {
     background-color: rgba(255, 255, 255, 0.5);
     color: rgb(89, 30, 74);
 }
+
 .tabcontent {
     display: none;
     border: 0px solid #ccc;
     border-top: none;
     align-content: center;
 }
+
 #search-tab {
     width: 800px;
     margin: auto;
     border: 0px;
 }
+
 #rights {
     height: 90px;
     background-color: rgba(0, 0, 0, 0.6);
@@ -112,6 +139,7 @@ div.tab button.active {
     font-family: 'Microsoft YaHei';
     font-size: 15px;
 }
+
 #weather {
     font-family: 'Microsoft YaHei';
     width: 90px;
@@ -122,32 +150,39 @@ div.tab button.active {
     border-radius: 15px;
     margin-left: 20px;
 }
+
 #weather-ifm {
     padding-left: 5px;
     padding-top: 2px;
     margin: 0 auto;
 }
-#top-space, #search-top-space {
+
+#top-space,
+#search-top-space {
     height: 20px;
     width: 100%;
 }
+
 #logo-top-space {
     height: 10%;
     width: 100%;
 }
+
 #tab-top-space {
     height: 50px;
     width: 100%;
 }
+
 #weather-icon {
-    width: 20px; 
-    height: 20px; 
+    width: 20px;
+    height: 20px;
     padding: 10 10 10 10px;
     position: relative;
     top: 45%;
     left: 25%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
+
 #w-ifm {
     height: 800px;
     width: 480px;
@@ -157,14 +192,72 @@ div.tab button.active {
     margin-left: 20px;
     margin-top: 20px;
 }
-#Google, #Baidu, #Bing, #Wikipedia {
+
+#Google,
+#Baidu,
+#Bing,
+#Wikipedia {
     transition: 0.3s;
 }
+
 #git-link {
     color: rgb(90, 170, 255);
     text-decoration: none;
 }
+
 .search-menu {
     display: none;
 }
-#search-div { display: block; }
+
+#search-div {
+    display: block;
+}
+
+#shr-father-box {
+    position: relative;
+    top: 10px;
+    display: none;
+    transition: 0.3s;
+}
+
+#history {
+    width: 750px;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    color: white;
+    font-size: 14px;
+    border: 0px;
+    align-self: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.records-btn {
+    width: 227px;
+    height: 30px;
+    border: 0px;
+    padding: 10px;
+    box-sizing: border-box;
+    line-height: 5px;
+    border-radius: 15px;
+    background-color: rgba(64, 64, 64, 0);
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-right: 10px;
+    margin-left: 10px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: rgba(64, 64, 64, 0.3);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.records-btn:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    color: rgb(89, 30, 74);
+}
