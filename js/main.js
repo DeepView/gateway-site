@@ -234,7 +234,7 @@ function recordCount() {
 }
 
 function drawingRecordsInterface() {
-    var i, htmlButtonString = '<br />\n';
+    var i, htmlButtonString = '\n';
     var currentRecords = getCurrentRecords(12);
     var len = currentRecords.length;
     var htmlButton = '<input type="button" class="records-btn" id="';
