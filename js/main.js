@@ -233,28 +233,22 @@ function recordCount() {
     return count;
 }
 
-function shrTest() {
-    var shr_string = '',
-        i;
-    for (i = 0; i < recordCount(); i++) {
-        shr_string += getRecord(i) + ', ';
-    }
-    alert(shr_string);
-}
-
 function drawingRecordsInterface() {
     var i, htmlButtonString = '<br />\n';
     var currentRecords = getCurrentRecords(12);
     var len = currentRecords.length;
     var htmlButton = '<input type="button" class="records-btn" id="';
-    document.getElementById('history').innerHTML = '<p>搜索历史记录</p>';
+    $('div#history').html('<p>搜索历史记录</p>');
+    if (len == 0) {
+        $('div#history').html('');
+    }
     for (i = 0; i < len; i++) {
         var keyword = getRecord(i);
         htmlButtonString += htmlButton + 'shr-button-' + i +
             '" value="' + keyword + '" onclick="document.location=\u0027' +
             buttonXLinkString + keyword + '\u0027;display(\u0027#shr-father-box\u0027, \u0027none\u0027);" />\n';
     }
-    document.getElementById('history').innerHTML += htmlButtonString;
+    $('div#history')[0].innerHTML += htmlButtonString;
 }
 
 //End
