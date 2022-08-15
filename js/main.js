@@ -1,4 +1,11 @@
-var buttonXLinkString = 'https://www.baidu.com/s?wd=';
+var links = [
+    'https://www.google.com/search?q=',
+    'https://www.baidu.com/s?wd=',
+    'https://cn.bing.com/search?q=',
+    'https://zh.wikipedia.org/w/index.php?search='
+];
+
+var buttonXLinkString = links[1];
 
 var changeToGoogleLink = function() {
     changeSearchEngineProviderLink('https://www.google.com');
@@ -38,28 +45,28 @@ function changeSearchEngine(evt, provider) {
             setElemAttr('#search-form', 'action', 'https://www.google.com/search');
             setElemAttr('#search-input', 'name', 'q');
             setElemAttr('#search-input', 'placeholder', 'Google Search');
-            buttonXLinkString = 'https://www.google.com/search?q=';
+            buttonXLinkString = links[0];
             break;
         case 'baidu':
             changeToBaiduLink();
             setElemAttr('#search-form', 'action', 'https://www.baidu.com/s');
             setElemAttr('#search-input', 'name', 'wd');
             setElemAttr('#search-input', 'placeholder', 'Baidu Search');
-            buttonXLinkString = 'https://www.baidu.com/s?wd=';
+            buttonXLinkString = links[1];
             break;
         case 'bing':
             changeToMicrosoftBingLink();
             setElemAttr('#search-form', 'action', 'https://cn.bing.com/search');
             setElemAttr('#search-input', 'name', 'q');
             setElemAttr('#search-input', 'placeholder', 'Bing Search');
-            buttonXLinkString = 'https://cn.bing.com/search?q=';
+            buttonXLinkString = links[2];
             break;
         case 'wikipedia':
             changeToWikipediaLink();
             setElemAttr('#search-form', 'action', 'https://zh.wikipedia.org/w/index.php');
             setElemAttr('#search-input', 'name', 'search');
             setElemAttr('#search-input', 'placeholder', 'Wikipedia Search');
-            buttonXLinkString = 'https://zh.wikipedia.org/w/index.php?search=';
+            buttonXLinkString = links[3];
             break;
         default:
             changeSearchEngineProviderLink('err/http404.html');
@@ -95,8 +102,7 @@ function setStyleAttr(element, attribute, value) {
 
 function changeBgImage() {
     var day = new Date().getDay();
-    var ws = document.getElementById("main-style");
-    ws.innerHTML += '#top-image { background-image: url("img/bgimg-0' + day + '.webp");' +
+    $('style#main-style')[0].innerHTML += '#top-image { background-image: url("img/bgimg-0' + day + '.webp");' +
         'margin-top: 0px;' +
         'background-position: center;' +
         'background-repeat: no-repeat;' +
@@ -148,6 +154,10 @@ function toStorage(key, value) {
     if (!sameIn(value) && !isEmpty(value)) localStorage.setItem(key, value);
 }
 
+function clearStorage() {
+    localStorage.clear();
+}
+
 function isSearchHistoryRecord(index) {
     var s = localStorage;
     var key_sstr = s.key(index).substring(0, PREFIX_LEN);
@@ -193,6 +203,10 @@ function getRecord(index) {
     return current_shr[index];
 }
 
+function getRecordWithLocalStorage(index) {
+    return extractSearchHistoryRecords()[index];
+}
+
 function sameIn(value) {
     var i, same, len = localStorage.length;
     if (localStorage.length == 0) same = false;
@@ -233,22 +247,86 @@ function recordCount() {
     return count;
 }
 
+function removeRecord(value) {
+    var i;
+    for (i = 0; i < localStorage.length; i++) {
+        if (localStorage.getItem(localStorage.key(i)) == value) {
+            localStorage.removeItem(localStorage.key(i));
+            break;
+        }
+    }
+}
+
+function clearRecordsInterface() {
+    if (confirm('你确定要清空所有的历史记录吗？这是一个不可逆的操作，一旦您确认这个操作，您的所有历史记录将会不复存在！')) {
+        clearStorage();
+        drawingAllRecordsInterface();
+    }
+}
+
 function drawingRecordsInterface() {
     var i, htmlButtonString = '\n';
     var currentRecords = getCurrentRecords(12);
     var len = currentRecords.length;
     var htmlButton = '<input type="button" class="records-btn" id="';
-    $('div#history').html('<p>搜索历史记录</p>');
     if (len == 0) {
-        $('div#history').html('');
+        $('td#history-label').html('');
+        $('td#close-history-td').html('');
+        display('#history-options', 'none');
+    } else {
+        $('td#history-label').html('<p>搜索历史记录</p>');
+        $('td#close-history-td').html(
+            '<a href="history.html" class="history-options">查看更多</a>&nbsp;&nbsp;&nbsp;&nbsp;' +
+            '<a href="javascript:display(\u0027#shr-father-box\u0027, \u0027none\u0027);" id="close-history-link">关闭</a>'
+        );
+        display('#history-options', 'block');
     }
+    $('div#history-record-area').html('');
     for (i = 0; i < len; i++) {
         var keyword = getRecord(i);
         htmlButtonString += htmlButton + 'shr-button-' + i +
             '" value="' + keyword + '" onclick="document.location=\u0027' +
             buttonXLinkString + keyword + '\u0027;display(\u0027#shr-father-box\u0027, \u0027none\u0027);" />\n';
     }
-    $('div#history')[0].innerHTML += htmlButtonString;
+    $('div#history-record-area')[0].innerHTML += htmlButtonString;
+}
+
+function drawingAllRecordsInterface() {
+    var i = 0,
+        index = 0,
+        htmlRecordString = '',
+        htmlXLinks = ['', '', '', ''],
+        htmlXLinkString = '',
+        provider = ['Google', 'Baidu', 'Bing', 'Wikipedia'],
+        htmlAllRecordString = '',
+        item = '',
+        len = recordCount(),
+        serial = 0;
+    if (len == 0) {
+        $('#all-history').html('<p id="null-history-tips">没有找到任何搜索历史记录！</p>');
+        setElemAttr('#all-history-tr', 'height', '700');
+    } else {
+        for (i = 0; i < len; i++) {
+            serial = i + 1;
+            htmlXLinkString = '';
+            item = getRecordWithLocalStorage(i);
+            if (item.length >= 48) htmlRecordString = item.substring(0, 47) + '...</td><td align="right">';
+            else htmlRecordString = item + '</td><td align="right">';
+            for (index = 0; index < 4; index++) {
+                htmlXLinks[index] = '<a href="' + links[index] +
+                    getRecordWithLocalStorage(i) + '" class="record-link">' +
+                    provider[index] + '</a>&nbsp;&nbsp;\n';
+            }
+            for (index = 0; index < 4; index++) htmlXLinkString += htmlXLinks[index];
+            htmlXLinkString += '&nbsp;&nbsp;<input type="button" class="del-record" value="删除" onclick="javascript:' +
+                'removeRecord(\u0027' + item + '\u0027);drawingAllRecordsInterface();" />\n';
+            htmlAllRecordString += '<tr class="single-line" height="50"><td>' +
+                serial + '.&nbsp;&nbsp;' + htmlRecordString +
+                '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + htmlXLinkString + '</td></tr>';
+        }
+        htmlAllRecordString = '<table id="record-sub-table" width="100%">' + htmlAllRecordString + '</table>';
+        $('#all-history').html(htmlAllRecordString);
+    }
 }
 
 //End

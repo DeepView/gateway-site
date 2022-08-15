@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="author" content="Carlos" />
+        <meta name="keywords" content="AnySearch Search History" />
+        <meta name="description" content="Search history page." />
+        <meta name="viewport" content="width=device-width initial-scale=1.0 user-scalable=0" />
+        <link rel="Bookmark" type="image/x-icon" href="img/icons/logo-icon.ico" />
+        <link rel="icon" type="image/x-icon" href="img/icons/logo-icon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="img/icons/logo-icon.ico" />
+        <link rel="stylesheet" type="text/css" href="style/history-style.css" />
+        <style id="shr-main-style" type="text/css"></style>
+        <title>Search History</title>
+    </head>
+    <body onload="drawingAllRecordsInterface()">
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/jquery-lib-v3.6.0/jquery.std.min.js"></script>
+        <table id="main-table-struct">
+            <tr>
+                <td>
+                    <a href="index.html">
+                        <img id="logo-img" src="img/logo.png" />
+                    </a>
+                </td>
+                <td>
+                    <p id="title">管理您的搜索历史记录</p>
+                </td>
+            </tr>
+            <tr height="50">
+                <td colspan="2"></td>
+            </tr>
+            <tr class="all-history-tr" height="100">
+                <td colspan="2">
+                    <a href="index.html">返回首页</a>&nbsp;&nbsp;
+                    <a href="javascript:clearRecordsInterface();" class="history-options">清空历史记录</a>
+                </td>
+            </tr>
+            <tr class="all-history-tr">
+                <td colspan="2">
+                    <div id="all-history">
+                        <!--显示所有历史记录-->
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

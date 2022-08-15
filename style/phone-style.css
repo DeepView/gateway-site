@@ -95,5 +95,9 @@ ul li a.menu {
 }
 
 .records-btn {
-    width: 145px;
+    width: 142px;
+}
+
+#history-table {
+    width: 340px;
 }
