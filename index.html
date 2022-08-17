@@ -78,11 +78,13 @@
                     </div>
                     <div id="search-top-space"></div>
                     <div id="search-div">
-                        <div id="search-box">
+                        <div id="search-box" class="input-box">
                             <form id="search-form" action="https://www.baidu.com/s" method="get">
-                                <input id="search-input" type="text" name="wd" placeholder="Baidu Search"
-                                    autocomplete="off" onfocus="displayAlphaMask();display('#shr-father-box', 'block');"
+                                <input class="input-placeholder-set" id="search-input" type="text" name="wd"
+                                    placeholder="Baidu Search" autocomplete="off"
+                                    onfocus="displayAlphaMask();display('#shr-father-box', 'block');"
                                     onblur="hideAlphaMask();" />
+                                <!-- <label class="placeholder-label">Baidu Search</label> -->
                                 <button id="go" type="submit"
                                     onclick="toStorage(genKey(), inval('#search-input'))"></button>
                             </form>

@@ -23,14 +23,15 @@ body,
     font-family: 'Microsoft YaHei';
     font-size: 14px;
     padding: 0 0 0 0px;
+    position: relative;
 }
 
 input[type=text] {
     margin: 0 0 0 0px;
     width: 800px;
-    border: 2px solid rgb(255, 255, 255);
+    border: 2px solid rgb(225, 225, 225);
     height: 50px;
-    background-color: rgba(255, 255, 255, 255);
+    background-color: rgb(225, 225, 225);
     background-repeat: no-repeat;
     background-size: 25px;
     background-position: center;
@@ -44,6 +45,7 @@ input[type=text] {
 
 input[type=text]:hover {
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.7);
+    background-color: rgb(255, 255, 255);
     border: 2px solid rgb(128, 128, 128);
 }
 
@@ -53,8 +55,13 @@ input[type=text]:focus {
     color: rgb(89, 30, 74);
 }
 
+input[type=text]:hover::placeholder {
+    color: rgb(128, 128, 128);
+}
+
 input[type=text]::placeholder {
     text-align: center;
+    color: rgb(89, 30, 74);
 }
 
 input[type=text]:focus::placeholder {
