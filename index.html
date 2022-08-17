@@ -38,19 +38,19 @@
                             <ul class="drop-down-content">
                                 <li>
                                     <a href="javascript:void(0)" class="elemlinks"
-                                        onclick="changeSearchEngine(event, 'google');drawingRecordsInterface();">Google</a>
+                                        onclick="changeSearchEngine(event, 'google');drawingLShrUi();">Google</a>
                                 </li>
                                 <li>
                                     <a href="javascript:void(0)" class="elemlinks active"
-                                        onclick="changeSearchEngine(event, 'baidu');drawingRecordsInterface();">Baidu</a>
+                                        onclick="changeSearchEngine(event, 'baidu');drawingLShrUi();">Baidu</a>
                                 </li>
                                 <li>
                                     <a href="javascript:void(0)" class="elemlinks"
-                                        onclick="changeSearchEngine(event, 'bing');drawingRecordsInterface();">Bing</a>
+                                        onclick="changeSearchEngine(event, 'bing');drawingLShrUi();">Bing</a>
                                 </li>
                                 <li>
                                     <a href="javascript:void(0)" class="elemlinks"
-                                        onclick="changeSearchEngine(event, 'wikipedia');drawingRecordsInterface();">Wikipedia</a>
+                                        onclick="changeSearchEngine(event, 'wikipedia');drawingLShrUi();">Wikipedia</a>
                                 </li>
                             </ul>
                         </li>
@@ -68,13 +68,13 @@
                 <div id="search-tab">
                     <div class="tab">
                         <button id="google" class="tablinks"
-                            onclick="changeSearchEngine(event, 'google');drawingRecordsInterface();">Google</button>
+                            onclick="changeSearchEngine(event, 'google');drawingLShrUi();">Google</button>
                         <button id="baidu" class="tablinks active"
-                            onclick="changeSearchEngine(event, 'baidu');drawingRecordsInterface();">Baidu</button>
+                            onclick="changeSearchEngine(event, 'baidu');drawingLShrUi();">Baidu</button>
                         <button id="bing" class="tablinks"
-                            onclick="changeSearchEngine(event, 'bing');drawingRecordsInterface();">Bing</button>
+                            onclick="changeSearchEngine(event, 'bing');drawingLShrUi();">Bing</button>
                         <button id="wikipedia" class="tablinks"
-                            onclick="changeSearchEngine(event, 'wikipedia');drawingRecordsInterface();">Wikipedia</button>
+                            onclick="changeSearchEngine(event, 'wikipedia');drawingLShrUi();">Wikipedia</button>
                     </div>
                     <div id="search-top-space"></div>
                     <div id="search-div">
@@ -84,7 +84,7 @@
                                     autocomplete="off" onfocus="displayAlphaMask();display('#shr-father-box', 'block');"
                                     onblur="hideAlphaMask();" />
                                 <button id="go" type="submit"
-                                    onclick="toStorage(generateKey(), getInputValue('#search-input'))"></button>
+                                    onclick="toStorage(genKey(), inval('#search-input'))"></button>
                             </form>
                         </div>
                     </div>
@@ -116,8 +116,8 @@
             <div>
                 <div id="rights">
                     <p>
-                        Copyight &copy; 2022 Carlos, All Rights Reserved. The last updated is UTC+8 August 15, 2022,
-                        21:10.
+                        Copyight &copy; 2022 Carlos, All Rights Reserved. The last updated is UTC+8 August 17, 2022,
+                        17:30.
                     </p>
                     <p>
                         This website comes from the open source project

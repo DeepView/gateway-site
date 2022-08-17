@@ -5,6 +5,7 @@ var links = [
     'https://zh.wikipedia.org/w/index.php?search='
 ];
 
+//默认情况或者初始化页面时候的历史记录按钮链接前缀字符串。
 var buttonXLinkString = links[1];
 
 var changeToGoogleLink = function() {
@@ -20,23 +21,28 @@ var changeToWikipediaLink = function() {
     changeSearchEngineProviderLink('https://zh.wikipedia.org');
 }
 
+//更改主页Logo的搜索引擎服务提供商的主站点超链接。
 function changeSearchEngineProviderLink(linkString) {
     setElemAttr('#se-provider', 'href', linkString);
 }
 
+//更改天气Widgets在单击之后的跳转链接地址。
 function changeWeatherLink() {
     var carlosWeatherLink =
         'https://widget-page.qweather.net/h5/index.html?md=0123456&bg=1&lc=auto&key=62d90441d8fc4be8989e7edbd3bc3f4a&v=_1659329448147';
     if (window.innerWidth <= 600) {
         setElemAttr('#carlos-weather', 'href', carlosWeatherLink);
-        setElemAttr('#carlos-weather', 'target', '_blank');
+    } else {
+        setElemAttr('#carlos-weather', 'href', 'https://www.qweather.com/');
     }
 }
 
+//设置指定元素的属性值。其中参数element可以是class，也可以是id，也可以是element_object。
 function setElemAttr(element, attribute, value) {
     $(element).attr(attribute, value);
 }
 
+//更改主页面的搜索引擎服务提供商。目前只预设了google，baidu，bing和wikipedia四个搜索引擎服务提供商，一旦provider的值无法判断，则将会跳转到http404.html。
 function changeSearchEngine(evt, provider) {
     var i, tablinks, elemlinks, tabs;
     switch (provider) {
@@ -88,18 +94,22 @@ function changeSearchEngine(evt, provider) {
     }
 }
 
+//修改蒙版的Alpha，使其能够显示。
 function displayAlphaMask() {
     setStyleAttr('#mask', 'background-color', 'rgba(0, 0, 0, 0.7)');
 }
 
+//修改蒙版的Alpha，使其能够隐藏。
 function hideAlphaMask() {
     setStyleAttr('#mask', 'background-color', 'rgba(0, 0, 0, 0)');
 }
 
-function setStyleAttr(element, attribute, value) {
-    $(element).css(attribute, value);
+//设置或者修改指定元素的样式表。其中参数element可以是class，也可以是id，也可以是element_object。参数style则为某个样式名称，比如说：background-color。
+function setStyleAttr(element, style, value) {
+    $(element).css(style, value);
 }
 
+//更改主页面的背景图像。
 function changeBgImage() {
     var day = new Date().getDay();
     $('style#main-style')[0].innerHTML += '#top-image { background-image: url("img/bgimg-0' + day + '.webp");' +
@@ -111,6 +121,7 @@ function changeBgImage() {
         'height: 100%; }';
 }
 
+//控制指定元素是否在页面上显示，这个操作是通过更改指定元素的样式表来实现的。
 function display(element, value) {
     setStyleAttr(element, 'display', value);
 }
@@ -118,8 +129,10 @@ function display(element, value) {
 function init() {
     changeBgImage();
     changeWeatherLink();
-    drawingRecordsInterface();
+    drawingLShrUi();
 }
+
+//天气Widgets参数设置。
 WIDGET = {
     "CONFIG": {
         "modules": "12034",
@@ -150,44 +163,51 @@ WIDGET = {
 const KEY_PREFIX_STRING = "shr:";
 const PREFIX_LEN = 4;
 
+//存储一个K-V到localStorage。
 function toStorage(key, value) {
     if (!sameIn(value) && !isEmpty(value)) localStorage.setItem(key, value);
 }
 
+//清空localStorage。
 function clearStorage() {
     localStorage.clear();
 }
 
-function isSearchHistoryRecord(index) {
+//判断localStorage中指定的K-V是否属于符合主页面定义的搜索历史记录。
+function isShr(index) {
     var s = localStorage;
     var key_sstr = s.key(index).substring(0, PREFIX_LEN);
     if (key_sstr == KEY_PREFIX_STRING) return true;
     else return false;
 }
 
-function extractSearchHistoryRecords() {
+//提取全部的搜索历史记录。
+function SHR() {
     var i, shr = [];
     var s = localStorage;
     for (i = 0; i < s.length; i++) {
-        if (isSearchHistoryRecord(i)) {
+        if (isShr(i)) {
             shr.push(s.getItem(s.key(i)));
         }
     }
     return shr;
 }
 
-function generateKey() {
-    var len = recordCount();
+//生成一个用于保存历史记录的Key，这个Key充当localStorage存储的K-V中的Key。
+function genKey() {
+    var len = shrCount();
     var serial = len + 1;
     return KEY_PREFIX_STRING + serial;
 }
 
-function getInputValue(elementId) {
+//获取指定指定元素的value，比如说获取某个input元素中，用户输入的值。
+function inval(elementId) {
     return $(elementId).val();
 }
 
-function getCurrentRecords(limit) {
-    var shr = extractSearchHistoryRecords();
+//获取指定数量的搜索历史记录。
+function limitShr(limit) {
+    var shr = SHR();
     var records = [],
         lsLen = shr.length;
     if (lsLen > limit) {
@@ -198,15 +218,18 @@ function getCurrentRecords(limit) {
     return records;
 }
 
-function getRecord(index) {
-    var current_shr = getCurrentRecords(12);
+//获取limitShr(limit)中，由index指定的某个搜索历史记录。
+function iLSHR(index) {
+    var current_shr = limitShr(12);
     return current_shr[index];
 }
 
-function getRecordWithLocalStorage(index) {
-    return extractSearchHistoryRecords()[index];
+//在所有历史记录中获取由index指定的搜索历史记录。
+function iSHR(index) {
+    return SHR()[index];
 }
 
+//判断value是否能够在历史记录中找到。
 function sameIn(value) {
     var i, same, len = localStorage.length;
     if (localStorage.length == 0) same = false;
@@ -231,6 +254,7 @@ function isEmpty(value) {
     else return false;
 }
 
+//判断value是否是由空格组合的字符串。
 function isSpaceString(value) {
     var origin = value.toString(),
         updated = value.replace(' ', '00');
@@ -238,16 +262,18 @@ function isSpaceString(value) {
     else return false;
 }
 
-function recordCount() {
+//获取搜索历史记录的数量。
+function shrCount() {
     var i, count = 0;
     var s = localStorage;
     for (i = 0; i < s.length; i++) {
-        if (isSearchHistoryRecord(i)) count++;
+        if (isShr(i)) count++;
     }
     return count;
 }
 
-function removeRecord(value) {
+//移除value指定的搜索历史记录。
+function remShr(value) {
     var i;
     for (i = 0; i < localStorage.length; i++) {
         if (localStorage.getItem(localStorage.key(i)) == value) {
@@ -257,16 +283,18 @@ function removeRecord(value) {
     }
 }
 
-function clearRecordsInterface() {
+//清空所有搜索历史记录的操作UI。
+function crui() {
     if (confirm('你确定要清空所有的历史记录吗？这是一个不可逆的操作，一旦您确认这个操作，您的所有历史记录将会不复存在！')) {
         clearStorage();
-        drawingAllRecordsInterface();
+        drawingShrUi();
     }
 }
 
-function drawingRecordsInterface() {
+//绘制或者生成主页面搜索历史记录的UI。
+function drawingLShrUi() {
     var i, htmlButtonString = '\n';
-    var currentRecords = getCurrentRecords(12);
+    var currentRecords = limitShr(12);
     var len = currentRecords.length;
     var htmlButton = '<input type="button" class="records-btn" id="';
     if (len == 0) {
@@ -283,7 +311,7 @@ function drawingRecordsInterface() {
     }
     $('div#history-record-area').html('');
     for (i = 0; i < len; i++) {
-        var keyword = getRecord(i);
+        var keyword = iLSHR(i);
         htmlButtonString += htmlButton + 'shr-button-' + i +
             '" value="' + keyword + '" onclick="document.location=\u0027' +
             buttonXLinkString + keyword + '\u0027;display(\u0027#shr-father-box\u0027, \u0027none\u0027);" />\n';
@@ -291,7 +319,8 @@ function drawingRecordsInterface() {
     $('div#history-record-area')[0].innerHTML += htmlButtonString;
 }
 
-function drawingAllRecordsInterface() {
+//绘制或者生成全部历史记录的UI。
+function drawingShrUi() {
     var i = 0,
         index = 0,
         htmlRecordString = '',
@@ -300,7 +329,7 @@ function drawingAllRecordsInterface() {
         provider = ['Google', 'Baidu', 'Bing', 'Wikipedia'],
         htmlAllRecordString = '',
         item = '',
-        len = recordCount(),
+        len = shrCount(),
         serial = 0;
     if (len == 0) {
         $('#all-history').html('<p id="null-history-tips">没有找到任何搜索历史记录！</p>');
@@ -309,17 +338,17 @@ function drawingAllRecordsInterface() {
         for (i = 0; i < len; i++) {
             serial = i + 1;
             htmlXLinkString = '';
-            item = getRecordWithLocalStorage(i);
+            item = iSHR(i);
             if (item.length >= 48) htmlRecordString = item.substring(0, 47) + '...</td><td align="right">';
             else htmlRecordString = item + '</td><td align="right">';
             for (index = 0; index < 4; index++) {
                 htmlXLinks[index] = '<a href="' + links[index] +
-                    getRecordWithLocalStorage(i) + '" class="record-link">' +
+                    iSHR(i) + '" class="record-link">' +
                     provider[index] + '</a>&nbsp;&nbsp;\n';
             }
             for (index = 0; index < 4; index++) htmlXLinkString += htmlXLinks[index];
             htmlXLinkString += '&nbsp;&nbsp;<input type="button" class="del-record" value="删除" onclick="javascript:' +
-                'removeRecord(\u0027' + item + '\u0027);drawingAllRecordsInterface();" />\n';
+                'remShr(\u0027' + item + '\u0027);drawingShrUi();" />\n';
             htmlAllRecordString += '<tr class="single-line" height="50"><td>' +
                 serial + '.&nbsp;&nbsp;' + htmlRecordString +
                 '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + htmlXLinkString + '</td></tr>';

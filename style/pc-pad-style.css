@@ -254,6 +254,7 @@ div.tab button.active {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    transition: 0.3s;
 }
 
 .records-btn:hover {

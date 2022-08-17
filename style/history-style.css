@@ -55,6 +55,10 @@ a:hover {
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.4);
 }
 
+.single-line {
+    transition: 0.3s;
+}
+
 .single-line:hover {
     color: rgb(90, 170, 255);
 }
