@@ -7,6 +7,8 @@
         <link rel="icon" type="image/x-icon" href="../img/icons/logo-icon.ico" />
         <link rel="stylesheet" type="text/css" href="../style/http-error-style.css" />
         <title>HTTP 403</title>
+        <script src="../js/phaser.min.js"></script>
+        <script src="../js/catch-the-cat.js"></script>
     </head>
     <body>
         <table id="main">
@@ -34,6 +36,22 @@
                             click here.
                         </a>
                     </p>
+                    <p>If you are bored now, you can try to play the following small game. This is a surprise for you
+                        who have gone astray!</p>
+                    <div class="container">
+                        <div id="catch-the-cat"></div>
+                        <script>
+                            window.game = new CatchTheCatGame({
+                                w: 11,
+                                h: 11,
+                                r: 20,
+                                backgroundColor: 0xeeeeee,
+                                parent: 'catch-the-cat',
+                                statusBarAlign: 'center',
+                                credit: 'Have fun!'
+                            });
+                        </script>
+                    </div>
                 </td>
             </tr>
         </table>

@@ -1,16 +1,32 @@
+body {
+    background-color: rgb(238, 238, 238);
+}
+
 #title {
     font-size: 48px;
     color: rgb(89, 30, 74);
 }
+
 #error-img {
     width: 80px;
     height: 80px;
 }
+
 #main {
     padding: 20px;
     margin: 20px;
 }
+
 a {
     color: rgb(90, 170, 255);
     text-decoration: none;
+}
+
+#catch-the-cat {
+    display: flex;
+    justify-content: left;
+}
+
+.container {
+    margin-top: 40px;
 }

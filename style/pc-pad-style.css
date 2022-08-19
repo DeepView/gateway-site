@@ -207,7 +207,7 @@ div.tab button.active {
     transition: 0.3s;
 }
 
-#git-link {
+.bottom-xlink {
     color: rgb(90, 170, 255);
     text-decoration: none;
 }
