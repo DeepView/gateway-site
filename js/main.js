@@ -5,6 +5,25 @@ var links = [
     'https://zh.wikipedia.org/w/index.php?search='
 ];
 
+var placeholdersOnline = [
+    '谷歌搜索',
+    '百度搜索',
+    '必应搜索',
+    '维基百科'
+];
+
+var placeholdersOffline = [
+    '谷歌搜索-设备已离线',
+    '百度搜索-设备已离线',
+    '必应搜索-设备已离线',
+    '维基百科-设备已离线'
+];
+
+var placeholders = placeholdersOnline;
+
+var weatherH5PageXLink =
+    'https://widget-page.qweather.net/h5/index.html?md=0123456&bg=1&lc=auto&key=62d90441d8fc4be8989e7edbd3bc3f4a&v=_1659329448147';
+
 //默认情况或者初始化页面时候的历史记录按钮链接前缀字符串。
 var buttonXLinkString = links[1];
 
@@ -21,20 +40,31 @@ var changeToWikipediaLink = function() {
     changeSearchEngineProviderLink('https://zh.wikipedia.org');
 }
 
+//修改Placeholder数据源。
+function changePlaceholders(networkStatus) {
+    switch (networkStatus) {
+        case 'online':
+            placeholders = placeholdersOnline;
+            break;
+        case 'offline':
+            placeholders = placeholdersOffline;
+            break;
+        default:
+            placeholders = placeholdersOnline;
+            break;
+    }
+}
+
 //更改主页Logo的搜索引擎服务提供商的主站点超链接。
 function changeSearchEngineProviderLink(linkString) {
     setElemAttr('#se-provider', 'href', linkString);
 }
 
-//更改天气Widgets在单击之后的跳转链接地址。
-function changeWeatherLink() {
-    var carlosWeatherLink =
-        'https://widget-page.qweather.net/h5/index.html?md=0123456&bg=1&lc=auto&key=62d90441d8fc4be8989e7edbd3bc3f4a&v=_1659329448147';
-    if (window.innerWidth <= 600) {
-        setElemAttr('#carlos-weather', 'href', carlosWeatherLink);
-    } else {
-        setElemAttr('#carlos-weather', 'href', 'https://www.qweather.com/');
-    }
+//打开一个窗口，这个窗口显示的是一个H5天气页面。
+function createWeatherWindow() {
+    var features = 'resizable=no,location=no,menubar=no,toolbar=no,width=480,height=800,left=32,top=32';
+    var w = window.open(weatherH5PageXLink, 'catWin', features);
+    w.focus();
 }
 
 //设置指定元素的属性值。其中参数element可以是class，也可以是id，也可以是element_object。
@@ -42,42 +72,47 @@ function setElemAttr(element, attribute, value) {
     $(element).attr(attribute, value);
 }
 
-//更改主页面的搜索引擎服务提供商。目前只预设了google，baidu，bing和wikipedia四个搜索引擎服务提供商，一旦provider的值无法判断，则将会跳转到http404.html。
-function changeSearchEngine(evt, provider) {
-    var i, tablinks, elemlinks, tabs;
+//设置文本框的Placeholder。
+function setPlaceholder(provider) {
     switch (provider) {
         case 'google':
             changeToGoogleLink();
             setElemAttr('#search-form', 'action', 'https://www.google.com/search');
             setElemAttr('#search-input', 'name', 'q');
-            setElemAttr('#search-input', 'placeholder', '谷歌搜索');
+            setElemAttr('#search-input', 'placeholder', placeholders[0]);
             buttonXLinkString = links[0];
             break;
         case 'baidu':
             changeToBaiduLink();
             setElemAttr('#search-form', 'action', 'https://www.baidu.com/s');
             setElemAttr('#search-input', 'name', 'wd');
-            setElemAttr('#search-input', 'placeholder', '百度搜索');
+            setElemAttr('#search-input', 'placeholder', placeholders[1]);
             buttonXLinkString = links[1];
             break;
         case 'bing':
             changeToMicrosoftBingLink();
             setElemAttr('#search-form', 'action', 'https://cn.bing.com/search');
             setElemAttr('#search-input', 'name', 'q');
-            setElemAttr('#search-input', 'placeholder', '必应搜索');
+            setElemAttr('#search-input', 'placeholder', placeholders[2]);
             buttonXLinkString = links[2];
             break;
         case 'wikipedia':
             changeToWikipediaLink();
             setElemAttr('#search-form', 'action', 'https://zh.wikipedia.org/w/index.php');
             setElemAttr('#search-input', 'name', 'search');
-            setElemAttr('#search-input', 'placeholder', '维基百科');
+            setElemAttr('#search-input', 'placeholder', placeholders[3]);
             buttonXLinkString = links[3];
             break;
         default:
             changeSearchEngineProviderLink('err/http404.html');
             break;
     }
+}
+
+//更改主页面的搜索引擎服务提供商。目前只预设了google，baidu，bing和wikipedia四个搜索引擎服务提供商，一旦provider的值无法判断，则将会跳转到http404.html。
+function changeSearchEngine(evt, provider) {
+    var i, tablinks, elemlinks, tabs;
+    setPlaceholder(provider);
     tablinks = document.getElementsByClassName("tablinks");
     elemlinks = document.getElementsByClassName("elemlinks")
     tabs = document.getElementsByClassName("tab");
@@ -129,7 +164,6 @@ function display(element, value) {
 
 function init() {
     changeBgImage();
-    changeWeatherLink();
     drawingLShrUi();
 }
 
@@ -348,6 +382,7 @@ function drawingShrUi() {
         serial = 0;
     if (len == 0) {
         $('#all-history').html('<p id="null-history-tips">没有找到任何搜索历史记录！</p>');
+        $('#bottom-tips-container').html('<!-- EMPTY_TIPS_STRING -->');
         setElemAttr('#all-history-tr', 'height', '700');
     } else {
         for (i = 0; i < len; i++) {
@@ -371,6 +406,8 @@ function drawingShrUi() {
         htmlAllRecordString = '<table id="record-sub-table" width="100%" border="0">' +
             htmlAllRecordString + '</table>';
         $('#all-history').html(htmlAllRecordString);
+        $('#bottom-tips-container').html('<a href="#">已经到底啦，点击这里返回顶部。</a>');
+        $('#bottom-tips-container').css('text-align', 'center');
     }
 }
 

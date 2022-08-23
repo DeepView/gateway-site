@@ -20,7 +20,7 @@
         <style id="main-style" type="text/css"></style>
         <title>AnySearch</title>
     </head>
-    <body onload="init()" onresize="changeWeatherLink()">
+    <body onload="init()" ononline="changePlaceholders('online')" onoffline="changePlaceholders('offline')">
         <script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" src="js/jquery-lib-v3.6.0/jquery.std.min.js"></script>
         <script type="text/javascript" src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0">
@@ -28,7 +28,7 @@
         <div id="top-image">
             <div id="mask">
                 <div id="top-space"></div>
-                <a id="carlos-weather" href="https://www.qweather.com/" target="_blank">
+                <a id="carlos-weather" href="javascript:void(0)" onclick="createWeatherWindow()">
                     <span id="he-plugin-simple"></span>
                 </a>
                 <span class="search-menu">
@@ -117,7 +117,7 @@
             <div>
                 <div id="rights">
                     <p>
-                        &copy; 2022 Carlos，保留所有权利。 本站最后更新时间：北京时间（UTC+8）2022年08月23日 16:45。
+                        &copy; 2022 Carlos，保留所有权利。 本站最后更新时间：北京时间（UTC+8）2022年08月24日 01:35。
                     </p>
                     <p>
                         本网站来自 Github 的开源项目
