@@ -91,11 +91,13 @@ input[type=text]:focus::placeholder {
 }
 
 div.tab {
-    overflow: hidden;
+    overflow: auto;
     border: 0px;
-    background-color: #f1f1f100;
+    background-color: transparent;
     margin-left: 50%;
-    transform: translateX(-45%);
+    transform: translateX(-50%);
+    box-sizing: border-box;
+    width: 280px;
 }
 
 div.tab button {
@@ -104,11 +106,14 @@ div.tab button {
     border: none;
     outline: none;
     cursor: pointer;
+    width: 70px;
+    height: 40px;
     padding: 17px 17px;
     transition: 0.3s;
-    font-size: 17px;
+    font-size: 16px;
     color: white;
-    border-radius: 50px;
+    border-radius: 20px;
+    line-height: 8px;
 }
 
 div.tab button:hover {
@@ -210,6 +215,11 @@ div.tab button.active {
 .bottom-xlink {
     color: rgb(90, 170, 255);
     text-decoration: none;
+    transition: 0.3s;
+}
+
+.bottom-xlink:hover {
+    color: rgb(89, 30, 74);
 }
 
 .search-menu {

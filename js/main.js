@@ -50,28 +50,28 @@ function changeSearchEngine(evt, provider) {
             changeToGoogleLink();
             setElemAttr('#search-form', 'action', 'https://www.google.com/search');
             setElemAttr('#search-input', 'name', 'q');
-            setElemAttr('#search-input', 'placeholder', 'Google Search');
+            setElemAttr('#search-input', 'placeholder', '谷歌搜索');
             buttonXLinkString = links[0];
             break;
         case 'baidu':
             changeToBaiduLink();
             setElemAttr('#search-form', 'action', 'https://www.baidu.com/s');
             setElemAttr('#search-input', 'name', 'wd');
-            setElemAttr('#search-input', 'placeholder', 'Baidu Search');
+            setElemAttr('#search-input', 'placeholder', '百度搜索');
             buttonXLinkString = links[1];
             break;
         case 'bing':
             changeToMicrosoftBingLink();
             setElemAttr('#search-form', 'action', 'https://cn.bing.com/search');
             setElemAttr('#search-input', 'name', 'q');
-            setElemAttr('#search-input', 'placeholder', 'Bing Search');
+            setElemAttr('#search-input', 'placeholder', '必应搜索');
             buttonXLinkString = links[2];
             break;
         case 'wikipedia':
             changeToWikipediaLink();
             setElemAttr('#search-form', 'action', 'https://zh.wikipedia.org/w/index.php');
             setElemAttr('#search-input', 'name', 'search');
-            setElemAttr('#search-input', 'placeholder', 'Wikipedia Search');
+            setElemAttr('#search-input', 'placeholder', '维基百科');
             buttonXLinkString = links[3];
             break;
         default:
@@ -341,7 +341,7 @@ function drawingShrUi() {
         htmlRecordString = '',
         htmlXLinks = ['', '', '', ''],
         htmlXLinkString = '',
-        provider = ['Google', 'Baidu', 'Bing', 'Wikipedia'],
+        provider = ['谷歌', '百度', '必应', '维基'],
         htmlAllRecordString = '',
         item = '',
         len = shrCount(),
