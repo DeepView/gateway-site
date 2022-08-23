@@ -1,3 +1,11 @@
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: black;
+    /* background-image: url('../img/shr-bgimg-02.jpg'); */
+}
+
 #main-table-struct {
     width: 70%;
     margin: auto;
@@ -6,6 +14,12 @@
 #logo-img {
     width: 165px;
     height: 75px;
+    border: 0px;
+    border-radius: 37.5px;
+}
+
+#logo-img:hover {
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.35);
 }
 
 #title {
@@ -26,6 +40,7 @@
     padding-left: 25px;
     padding-right: 25px;
     padding-top: 100px;
+    color: white;
 }
 
 a {
@@ -55,10 +70,25 @@ a:hover {
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.4);
 }
 
-.single-line {
+.single-line,
+#logo-img {
     transition: 0.3s;
 }
 
 .single-line:hover {
     color: rgb(90, 170, 255);
+}
+
+#background-image-container {
+    background-image: url('../img/shr-bgimg.jpg');
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    filter: blur(30px);
+    position: fixed;
+}
+
+#table-parent-container {
+    background-color: transparent;
+    position: relative;
 }

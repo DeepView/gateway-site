@@ -195,9 +195,23 @@ function SHR() {
 
 //生成一个用于保存历史记录的Key，这个Key充当localStorage存储的K-V中的Key。
 function genKey() {
-    var len = shrCount();
+    var ret, len = shrCount();
     var serial = len + 1;
+    while (keyExists(KEY_PREFIX_STRING + serial)) {
+        serial += 1;
+    }
     return KEY_PREFIX_STRING + serial;
+}
+
+function keyExists(key) {
+    var i, ret, len = localStorage.length;
+    for (i = 0; i < len; i++) {
+        if (localStorage.key(i) == key) {
+            ret = true;
+            break;
+        } else ret = false;
+    }
+    return ret;
 }
 
 //获取指定指定元素的value，比如说获取某个input元素中，用户输入的值。
@@ -351,9 +365,10 @@ function drawingShrUi() {
                 'remShr(\u0027' + item + '\u0027);drawingShrUi();" />\n';
             htmlAllRecordString += '<tr class="single-line" height="50"><td>' +
                 serial + '.&nbsp;&nbsp;' + htmlRecordString +
-                '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + htmlXLinkString + '</td></tr>';
+                htmlXLinkString + '</td></tr>';
         }
-        htmlAllRecordString = '<table id="record-sub-table" width="100%">' + htmlAllRecordString + '</table>';
+        htmlAllRecordString = '<table id="record-sub-table" width="100%" border="0">' +
+            htmlAllRecordString + '</table>';
         $('#all-history').html(htmlAllRecordString);
     }
 }

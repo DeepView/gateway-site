@@ -17,33 +17,37 @@
     <body onload="drawingShrUi()">
         <script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" src="js/jquery-lib-v3.6.0/jquery.std.min.js"></script>
-        <table id="main-table-struct">
-            <tr>
-                <td>
-                    <a href="index.html">
-                        <img id="logo-img" src="img/logo.png" />
-                    </a>
-                </td>
-                <td>
-                    <p id="title">管理您的搜索历史记录</p>
-                </td>
-            </tr>
-            <tr height="50">
-                <td colspan="2"></td>
-            </tr>
-            <tr class="all-history-tr" height="100">
-                <td colspan="2">
-                    <a href="index.html">返回首页</a>&nbsp;&nbsp;
-                    <a href="javascript:crui();" class="history-options">清空历史记录</a>
-                </td>
-            </tr>
-            <tr class="all-history-tr">
-                <td colspan="2">
-                    <div id="all-history">
-                        <!--显示所有历史记录-->
-                    </div>
-                </td>
-            </tr>
-        </table>
+        <div id="background-image-container">
+        </div>
+        <div id="table-parent-container">
+            <table id="main-table-struct">
+                <tr>
+                    <td>
+                        <a href="index.html">
+                            <img id="logo-img" src="img/logo.png" />
+                        </a>
+                    </td>
+                    <td>
+                        <p id="title">管理您的搜索历史记录</p>
+                    </td>
+                </tr>
+                <tr height="50">
+                    <td colspan="2"></td>
+                </tr>
+                <tr class="all-history-tr" height="100">
+                    <td colspan="2">
+                        <a href="index.html">返回首页</a>&nbsp;&nbsp;
+                        <a href="javascript:crui();" class="history-options">清空历史记录</a>
+                    </td>
+                </tr>
+                <tr class="all-history-tr">
+                    <td colspan="2">
+                        <div id="all-history">
+                            <!--显示所有历史记录-->
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </body>
 </html>
