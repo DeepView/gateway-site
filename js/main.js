@@ -117,6 +117,7 @@ function changeBgImage() {
         'background-position: center;' +
         'background-repeat: no-repeat;' +
         'background-attachment: fixed;' +
+        'background-size: cover;' +
         'width: 100%;' +
         'height: 100%; }';
 }
