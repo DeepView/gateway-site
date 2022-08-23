@@ -96,7 +96,7 @@ a:hover {
 
 #footer-container {
     text-align: center;
-    background-color: rgba(64, 64, 64, );
+    background-color: rgba(64, 64, 64, 1);
     margin-bottom: 0px;
     position: fixed;
     bottom: 0px;
