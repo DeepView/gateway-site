@@ -80,6 +80,7 @@ function setPlaceholder(provider) {
             setElemAttr('#search-form', 'action', 'https://www.google.com/search');
             setElemAttr('#search-input', 'name', 'q');
             setElemAttr('#search-input', 'placeholder', placeholders[0]);
+            setElemAttr('#logo-img', 'title', '点击这里访问谷歌主页');
             buttonXLinkString = links[0];
             break;
         case 'baidu':
@@ -87,6 +88,7 @@ function setPlaceholder(provider) {
             setElemAttr('#search-form', 'action', 'https://www.baidu.com/s');
             setElemAttr('#search-input', 'name', 'wd');
             setElemAttr('#search-input', 'placeholder', placeholders[1]);
+            setElemAttr('#logo-img', 'title', '点击这里访问百度主页');
             buttonXLinkString = links[1];
             break;
         case 'bing':
@@ -94,6 +96,7 @@ function setPlaceholder(provider) {
             setElemAttr('#search-form', 'action', 'https://cn.bing.com/search');
             setElemAttr('#search-input', 'name', 'q');
             setElemAttr('#search-input', 'placeholder', placeholders[2]);
+            setElemAttr('#logo-img', 'title', '点击这里访问微软必应主页');
             buttonXLinkString = links[2];
             break;
         case 'wikipedia':
@@ -101,6 +104,7 @@ function setPlaceholder(provider) {
             setElemAttr('#search-form', 'action', 'https://zh.wikipedia.org/w/index.php');
             setElemAttr('#search-input', 'name', 'search');
             setElemAttr('#search-input', 'placeholder', placeholders[3]);
+            setElemAttr('#logo-img', 'title', '点击这里访问维基百科主页');
             buttonXLinkString = links[3];
             break;
         default:

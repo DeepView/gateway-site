@@ -1,0 +1,4 @@
+CACHE MANIFSET		# app ver-1.0.2209.1
+
+CACHE: js/main.js  img/logo.png  img/icons/logo-icon.ico
+NETWORK: img/bgimg-00.webp  img/bgimg-01.webp  img/bgimg-02.webp  img/bgimg-03.webp  img/bgimg-04.webp  img/bgimg-05.webp  img/bgimg-06.webp

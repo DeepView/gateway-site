@@ -1,0 +1,4 @@
+CACHE MANIFSET		# app ver-1.0.2209.1
+
+CACHE: js/main.js  img/logo.png  img/icons/logo-icon.ico
+NETWORK: shr-bgimg.jpg
