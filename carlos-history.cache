@@ -1,4 +1,4 @@
 CACHE MANIFSET		# app ver-1.0.2209.1
 
-CACHE: js/main.js  img/logo.png  img/icons/logo-icon.ico
-NETWORK: shr-bgimg.jpg
+CACHE: img/logo.png  img/icons/logo-icon.ico  js/jquery-lib-v3.6.0/jquery.std.min.js  js/vue-lib-v3.2.36/vue.std.min.js
+NETWORK: shr-bgimg.jpg  js/main.js

@@ -1,0 +1,4 @@
+CACHE MANIFSET		# app ver-1.0.2209.1
+
+CACHE: err/http403.html  err/http404.html  img/icons/error.svg
+NETWORK: 

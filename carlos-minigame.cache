@@ -1,0 +1,4 @@
+CACHE MANIFSET		# app ver-1.0.2209.1
+
+CACHE: js/catch-the-cat.js  js/phaser.min.js
+NETWORK: catch-cat.html
