@@ -357,8 +357,8 @@ function drawingLShrUi() {
     } else {
         $('td#history-label').html('<p>搜索历史记录</p>');
         $('td#close-history-td').html(
-            '<a href="history.html" class="history-options">查看更多</a>&nbsp;&nbsp;&nbsp;&nbsp;' +
-            '<a href="javascript:display(\u0027#shr-father-box\u0027, \u0027none\u0027);" id="close-history-link">关闭</a>'
+            '<a href="history.html" class="history-options" accesskey="M">查看更多</a>&nbsp;&nbsp;&nbsp;&nbsp;' +
+            '<a href="javascript:display(\u0027#shr-father-box\u0027, \u0027none\u0027);" id="close-history-link" accesskey="C">关闭</a>'
         );
         display('#history-options', 'block');
     }

@@ -4,6 +4,8 @@ body,
     margin: 0px;
     padding: 0px;
     height: 100%;
+    border: 0px;
+    border-color: transparent;
     background-color: rgb(64, 64, 64);
 }
 
