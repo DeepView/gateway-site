@@ -142,7 +142,7 @@ div.tab button.active {
 }
 
 #rights {
-    height: 90px;
+    height: 70px;
     background-color: rgba(0, 0, 0, 0.6);
     color: rgb(224, 224, 224);
     text-align: center;
@@ -151,7 +151,7 @@ div.tab button.active {
     left: 0px;
     right: 0px;
     font-family: 'Microsoft YaHei';
-    font-size: 15px;
+    font-size: 12px;
 }
 
 #weather {

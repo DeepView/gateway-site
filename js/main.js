@@ -207,9 +207,13 @@ function toStorage(key, value) {
     if (!sameIn(value) && !isEmpty(value)) localStorage.setItem(key, value);
 }
 
-//清空localStorage。
+//清空localStorage中保存的搜索历史记录，并返回一个值表示是否操作是否成功。
 function clearStorage() {
-    localStorage.clear();
+    var i, len = localStorage.length;
+    for (i = 0; i < len; i++) {
+        if (isShr(i)) localStorage.removeItem(localStorage.key(i));
+    }
+    return shrCount() == 0 ? true : false;
 }
 
 //判断localStorage中指定的K-V是否属于符合主页面定义的搜索历史记录。

@@ -84,7 +84,7 @@
                                     placeholder="百度搜索" autocomplete="off" accesskey="S"
                                     onfocus="displayAlphaMask();display('#shr-father-box', 'block');"
                                     onblur="hideAlphaMask();" />
-                                <button id="go" type="submit"
+                                <button id="go" rel="nofollow" type="submit"
                                     onclick="toStorage(genKey(), inval('#search-input'))"></button>
                             </form>
                         </div>
@@ -117,11 +117,12 @@
             <div>
                 <div id="rights">
                     <p>
-                        &copy; 2022 Carlos，保留所有权利。 本站最后更新时间：北京时间（UTC+8）2022年09月22日 16:20。
+                        &copy; 2022 Carlos，保留所有权利。 本站最后更新时间：北京时间（UTC+8）2022年12月08日 17:00。
                     </p>
                     <p>
                         本网站来自 Github 的开源项目
-                        <a href="https://github.com/DeepView/gateway-site" target="_blank" class="bottom-xlink">
+                        <a href="https://github.com/DeepView/gateway-site" rel="noopener noreferrer" target="_blank"
+                            class="bottom-xlink">
                             DeepView/gateway-site
                         </a>
                         ，使用前请遵守相关的开源协议。另外，我们准备了一个
