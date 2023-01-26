@@ -298,6 +298,7 @@ div.tab button.active {
     transition: 0.3s;
 }
 
+#visit-home:hover,
 #close-history-link:hover,
 .history-options:hover {
     color: rgb(89, 30, 74);
@@ -309,8 +310,16 @@ div.tab button.active {
     box-sizing: border-box;
 }
 
-.history-options {
+.history-options,
+#visit-home {
     color: white;
     text-decoration: none;
     transition: 0.3s;
+}
+
+#visit-home {
+    float: right;
+    position: relative;
+    top: 10px;
+    right: 40px;
 }

@@ -67,6 +67,12 @@ function createWeatherWindow() {
     w.focus();
 }
 
+//显示版本信息。
+function aboutSite() {
+    var ver = $('#doc-head').data('version');
+    alert(ver);
+}
+
 //设置指定元素的属性值。其中参数element可以是class，也可以是id，也可以是element_object。
 function setElemAttr(element, attribute, value) {
     $(element).attr(attribute, value);
